@@ -56,6 +56,12 @@ body {
   font-size: var(--mainFontSize);
 }
 
+.flex {
+  display: flex;
+
+  flex-direction: column;
+}
+
 .flex_v {
   display: flex;
   align-items: center;
@@ -72,16 +78,30 @@ body {
 
 .center-page {
   width: 65%;
+  margin-left: 10%;
+  padding: 20px;
 }
 
 .right-page {
   width: 25%;
   padding: 20px;
+  position: fixed;
+  right: 0%;
 }
 
 .left-page {
   width: 10%;
   padding: 10px;
+  position: fixed;
+  left: 0%;
+}
+
+/* ------- IMG ------------ */
+
+.img-rounded {
+  height: 50px;
+  width: 50px;
+  border-radius: 100px;
 }
 
 /* --------  CENTER ---------*/
@@ -93,6 +113,25 @@ header {
   left: 10%;
   width: 65%;
   padding: 20px;
+}
+
+.status {
+  margin-top: 80px;
+  height: 3000px;
+}
+
+.status_input {
+  width: 90%;
+  height: 40px;
+  background-color: rgb(128, 101, 101);
+  border-style: none;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.reponse {
+  margin-left: 70px;
 }
 /* --------  LEFT ---------*/
 .logo {
@@ -209,6 +248,7 @@ header {
 @media only screen and (max-width: 1200px) {
   .center-page {
     width: 80%;
+    margin-left: 20%;
   }
 
   header {
