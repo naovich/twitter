@@ -2,10 +2,15 @@ import { useReducer } from "react";
 import { produce } from "immer";
 
 export const initialState = {
+  userId: 0,
+  nickname: "Nadhoir",
+  login: "naovich",
+  imgProfil:
+    "https://pbs.twimg.com/profile_images/2507404252/22p3u6fhoduk4dr09l89_reasonably_small.gif",
   tweets: [
     {
       id: 0,
-      nickname: "nadhoir",
+      nickname: "Nadhoir",
       login: "naovich",
       imgProfil:
         "https://pbs.twimg.com/profile_images/2507404252/22p3u6fhoduk4dr09l89_reasonably_small.gif",
@@ -58,11 +63,37 @@ export const initialState = {
       like: 6500,
     },
   ],
-  userId: 0,
-  nickname: "nadhoir",
-  login: "naovich",
-  imgProfil:
-    "https://pbs.twimg.com/profile_images/2507404252/22p3u6fhoduk4dr09l89_reasonably_small.gif",
+
+  trends: [
+    {
+      id: 1,
+      categorie: "Pop -",
+      hashtag: "Rihanna",
+      rt: 42000,
+    },
+    {
+      id: 2,
+      categorie: "Gaming -",
+      hashtag: "Destiny",
+      rt: 25700,
+    },
+    {
+      id: 3,
+      hashtag: "Comores",
+      rt: 17200,
+    },
+    {
+      id: 4,
+      hashtag: "DBZ",
+      rt: 5200,
+    },
+    {
+      id: 5,
+      categorie: "Football -",
+      hashtag: "PSG",
+      rt: 985,
+    },
+  ],
 };
 
 // Selector

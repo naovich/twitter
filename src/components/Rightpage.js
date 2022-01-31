@@ -1,4 +1,7 @@
 import React from "react";
+import Trend from "../components/Trend";
+import { initialState } from "../data/reducer";
+import { k } from "../Tools/tools";
 
 function Rightpage() {
   return (
@@ -16,37 +19,15 @@ function Rightpage() {
           </a>
         </div>
 
-        <div>
-          <ul className="trend_item">
-            <li className="categorie">1. Categorie</li>
-            <li className="hashtag">#Categorie</li>
-            <li className="tweet_number">21,6k Tweets</li>
-          </ul>
-        </div>
-
-        <div>
-          <ul className="trend_item">
-            <li className="categorie">2. Categorie</li>
-            <li className="hashtag">#Categorie</li>
-            <li className="tweet_number">21,6k Tweets</li>
-          </ul>
-        </div>
-
-        <div>
-          <ul className="trend_item">
-            <li className="categorie">3. Categorie</li>
-            <li className="hashtag">#Categorie</li>
-            <li className="tweet_number">21,6k Tweets</li>
-          </ul>
-        </div>
-
-        <div>
-          <ul className="trend_item">
-            <li className="categorie">1. Categorie</li>
-            <li className="hashtag">#Categorie</li>
-            <li className="tweet_number">21,6k Tweets</li>
-          </ul>
-        </div>
+        {initialState.trends.map((x, key) => (
+          <Trend
+            key={x.id}
+            id={x.id}
+            categorie={x.categorie}
+            hashtag={x.hashtag}
+            rt={k(x.rt)}
+          />
+        ))}
 
         <div>
           <ul className="trend_item">

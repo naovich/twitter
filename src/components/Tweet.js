@@ -1,4 +1,5 @@
 import React from "react";
+import { k } from "../Tools/tools";
 
 function Tweet({
   nickname,
@@ -31,11 +32,6 @@ function Tweet({
 export default Tweet;
 
 function TweetInfo({ comment, retweet, like }) {
-  function k(number) {
-    let num;
-    number >= 1000 ? (num = number / 1000 + "K") : (num = number);
-    return num;
-  }
   return (
     <div className="flex_h tweet_iconInfo">
       <span className="twitter_comment">
