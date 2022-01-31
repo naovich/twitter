@@ -4,6 +4,7 @@ import { produce } from "immer";
 export const initialState = {
   tweets: [
     {
+      id: 0,
       nickname: "nadhoir",
       login: "naovich",
       imgProfil:
@@ -14,10 +15,11 @@ export const initialState = {
       comment: 52,
       rt: 156,
       like: 632,
-      Image:
+      image:
         "https://pbs.twimg.com/media/FKV64sKWUAIMslK?format=jpg&name=medium",
     },
     {
+      id: 1,
       nickname: "Sandrine Rousseau",
       login: "sandrousseau",
       imgProfil:
@@ -29,6 +31,7 @@ export const initialState = {
       like: 7000,
     },
     {
+      id: 2,
       nickname: "Antonio",
       login: "@PSGT0ni",
       imgProfil:
@@ -38,10 +41,11 @@ export const initialState = {
       comment: 12,
       rt: 400,
       like: 1000,
-      Image:
+      image:
         "https://pbs.twimg.com/media/FKYBDqHXsAYP2VQ?format=jpg&name=small",
     },
     {
+      id: 3,
       nickname: "Aliotop",
       login: "Aliotop_off",
       imgProfil:
@@ -54,11 +58,16 @@ export const initialState = {
       like: 6500,
     },
   ],
+  userId: 0,
+  nickname: "nadhoir",
+  login: "naovich",
+  imgProfil:
+    "https://pbs.twimg.com/profile_images/2507404252/22p3u6fhoduk4dr09l89_reasonably_small.gif",
 };
 
 // Selector
-export const getAllTweet = (tweets) =>
-  tweets?.reduce((amount, item) => item.price + amount, 0);
+/*export const getAllTweet = (tweets) =>
+  tweets?.reduce((amount, item) => item.price + amount, 0);*/
 
 const reducer = (state = initialState, action) => {
   const ap = action.payload;

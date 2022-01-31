@@ -2,7 +2,7 @@
 
 :root {
   --bgColor: #ffffff;
-  --headerBgColor: rgba(255, 255, 255, 0.8);
+  --headerBgColor: rgba(255, 255, 255, 0.95);
   --borderColor: whitesmoke;
   --logoColor: #1d9bf0;
   --iconBgColor: #ffffff;
@@ -325,6 +325,10 @@ header {
   left: 20px;
   font-size: 25px;
   color: var(--iconOver);
+}
+
+.input-icons i > span {
+  font-size: 12px;
 }
 
 ::placeholder {

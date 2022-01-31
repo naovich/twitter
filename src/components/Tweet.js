@@ -1,12 +1,18 @@
 import React from "react";
 
-function Tweet({ nickname, login, message, image }) {
+function Tweet({
+  nickname,
+  login,
+  message,
+  imgProfil,
+  image,
+  comment,
+  retweet,
+  like,
+}) {
   return (
     <div className="tweet pointer">
-      <img
-        src="https://pbs.twimg.com/profile_images/1482759016535269379/m559Oniw_400x400.jpg"
-        className="img-rounded pointer "
-      />
+      <img src={imgProfil} className="img-rounded pointer " />
 
       <div className="flex">
         <div className="tweet_nickLogin">
@@ -14,14 +20,9 @@ function Tweet({ nickname, login, message, image }) {
           <span className="tweet_loginame pointer"> @{login}</span>
         </div>
         <span className="tweet_message ">{message && message}</span>
-        {image && (
-          <img
-            className="tweet_img"
-            src="https://pbs.twimg.com/media/FKV64sKWUAIMslK?format=jpg&name=medium"
-          />
-        )}
+        {image && <img className="tweet_img" src={image} />}
 
-        <TweetInfo comment={10} retweet={52} like={205} />
+        <TweetInfo comment={comment} retweet={retweet} like={like} />
       </div>
     </div>
   );
@@ -30,19 +31,24 @@ function Tweet({ nickname, login, message, image }) {
 export default Tweet;
 
 function TweetInfo({ comment, retweet, like }) {
+  function k(number) {
+    let num;
+    number >= 1000 ? (num = number / 1000 + "K") : (num = number);
+    return num;
+  }
   return (
     <div className="flex_h tweet_iconInfo">
       <span className="twitter_comment">
         <i className="far fa-comment"></i>
-        <span>{comment}</span>
+        <span>{k(comment)}</span>
       </span>
       <span className="twitter_retweet">
         <i className="fas fa-retweet "></i>
-        {retweet}
+        {k(retweet)}
       </span>
       <span className="twitter_like">
         <i className="far fa-heart "></i>
-        {like}
+        {k(like)}
       </span>
       <span className="twitter_comment">
         <i className="far fa-share-square "></i>
