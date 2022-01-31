@@ -8,7 +8,7 @@ import Rightpage from "./components/Rightpage";
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex_h">
+      <div className="flex_h master">
         <Leftpage />
         <Routes>
           <Route path="/" element={<Home />} />

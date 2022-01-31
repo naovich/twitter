@@ -15,6 +15,7 @@
   --leftIconSize: 2rem;
 
   --inputBgColor: #eff3f4;
+  --disabledButtonTweet: #8ecdf8;
 }
 
 /* --------  GENERAL ---------*/
@@ -62,6 +63,9 @@ body {
   flex-direction: column;
 }
 
+.master {
+}
+
 .flex_v {
   display: flex;
   align-items: center;
@@ -76,14 +80,20 @@ body {
   align-content: flex-start;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 .center-page {
   width: 65%;
+  max-width: 1200px;
   margin-left: 10%;
   padding: 20px;
 }
 
 .right-page {
   width: 25%;
+  max-width: 400px;
   padding: 20px;
   position: fixed;
   right: 0%;
@@ -96,6 +106,25 @@ body {
   left: 0%;
 }
 
+button {
+  background-color: var(--logoColor);
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-size: 1.1rem;
+  padding: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: var(--disabledButtonTweet);
+  cursor: inherit;
+}
+
+.grey {
+  color: #7b8892;
+}
 /* ------- IMG ------------ */
 
 .img-rounded {
@@ -112,18 +141,18 @@ header {
   background-color: var(--headerBgColor);
   left: 10%;
   width: 65%;
+  max-width: 1200px;
   padding: 20px;
 }
 
 .status {
   margin-top: 80px;
-  height: 3000px;
 }
 
 .status_input {
-  width: 90%;
+  width: 70%;
   height: 40px;
-  background-color: rgb(128, 101, 101);
+  background-color: rgb(255, 255, 255);
   border-style: none;
   margin-left: 20px;
   margin-bottom: 20px;
@@ -132,6 +161,115 @@ header {
 
 .reponse {
   margin-left: 70px;
+  color: var(--logoColor);
+  font-weight: bold;
+  font-size: 0.8rem;
+}
+
+.iconstatus {
+  border-top: solid var(--borderColor) 1px;
+  border-bottom: solid var(--borderColor) 1px;
+
+  margin-top: 10px;
+  padding: 10px;
+}
+
+.iconstatus i {
+  font-size: 1.2rem;
+  margin-right: 20px;
+}
+
+.iconstatus button {
+  margin-left: 100px;
+}
+
+.main {
+  height: 3000px;
+}
+
+.tweet {
+  display: flex;
+  margin-top: 20px;
+  border-bottom: solid 1px var(--borderColor);
+  padding-bottom: 10px;
+}
+
+.tweet img {
+  margin-right: 20px;
+}
+
+.tweet_nickname {
+  font-weight: bold;
+}
+
+.tweet_nickname:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.tweet_loginame {
+  font-style: italic;
+  color: #7b8892;
+}
+
+.tweet_message {
+  margin-top: 5px;
+}
+
+.tweet_img {
+  margin-top: 10px;
+  max-width: 600px;
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+/*  -----------Titter info-------------- */
+.tweet_iconInfo {
+  color: #7b8892;
+  width: 400px;
+}
+.tweet_iconInfo i {
+  font-size: 1.3rem;
+  justify-content: space-between;
+  padding-top: 10px;
+  height: 40px;
+  width: 40px;
+  border-radius: 100px;
+  border: none;
+  text-align: center;
+}
+/*  -- Comment -- */
+.twitter_comment:hover {
+  color: rgb(128, 198, 245);
+}
+
+.twitter_comment:hover > i {
+  background-color: rgba(149, 206, 245, 0.2);
+}
+/*  -- Retweet -- */
+.twitter_retweet:hover {
+  color: rgb(111, 190, 123);
+}
+.twitter_retweet:hover > i {
+  background-color: rgba(160, 248, 173, 0.3);
+}
+
+/*  -- Like -- */
+.twitter_like:hover {
+  color: rgb(243, 104, 146);
+}
+.twitter_like:hover > i {
+  background-color: rgba(238, 133, 133, 0.3);
+}
+
+/*  -----------Retweet-------------- */
+.retweet > span {
+  font-size: 0.8rem;
+  margin-top: 10px;
+}
+.retweet {
+  margin-top: 10px;
 }
 /* --------  LEFT ---------*/
 .logo {
@@ -271,5 +409,13 @@ header {
 
   .smartphone {
     display: inline-block;
+  }
+
+  .iconstatus button {
+    margin-left: 70px;
+  }
+
+  .tweet_iconInfo {
+    width: 250px;
   }
 }
