@@ -47,7 +47,7 @@ export const initialState = {
       rt: 400,
       like: 1000,
       image:
-        "https://pbs.twimg.com/media/FKYBDqHXsAYP2VQ?format=jpg&name=small",
+        "https://lh3.googleusercontent.com/0hTvxwcgRjoeqjkcSt34svrq9gwNmZRA4wwxhvQrAOE4bkEIAZGetdpDCB4OM1F-lgXgGtxyKuBJl4kngUaztHT6Ot67gbfLiwhJgRLWIYuvg5xiR6K8sg3vAMl4R6VdvcGZEAZa8YLF9kf_0wZNy_3mJsz9bcAdvV6lYQfiY-bHZKE5_4p4DFZOulOlTD7hmc35dr0FzhWKfRrjq4015YYbsNeoe69h7hkvw31kS2x7mBq1hkuDql-zdLTCn-UYT1aovH6duhNpDpZ5niiGLRske8GEkOvxlC0HZ_BmACXe84KERu_AFo9nqPJJ3b6_WolRvr5af1QqLg2G-qG-PQKvf6UhOb2uM_YkJZlexvOqRltkR90eZeqRVY4egnAb4CTz_ntA2dJCb9Bs6hmA-zM_oofAmKhfkSI5mldY9EsCm18KsBoV-ls9-9stHpFamQZAtzzpZ76jFfi55KiAtepKx7_cy3AEuhFTM-Od_wq3iSY1uPYtJekJGNNxZA5fbDMYsiJIecVdoAIsOcQ8RhfIsA7IJs0_oqybCSH4bNd31OT8LMNZWlPuRWJyOxZ56adH_QE7QRaooGkRpUTlbyCLSdM-djAA3DlHtNPyCS-vqqasO4feGSf5KjL-rCF1F_hTcyNNfPNZb6IHjQxzTbUuXzdwKWtMx5BiDnrq7jQtIPjqBgPkw16WslJxvINwab5ZbPeGdomNZXKhrjrgHrbg=w706-h929-no?authuser=1",
     },
     {
       id: 3,
@@ -67,13 +67,13 @@ export const initialState = {
   trends: [
     {
       id: 1,
-      categorie: "Pop -",
+      categorie: "Pop",
       hashtag: "Rihanna",
       rt: 42000,
     },
     {
       id: 2,
-      categorie: "Gaming -",
+      categorie: "Gaming",
       hashtag: "Destiny",
       rt: 25700,
     },
@@ -89,7 +89,7 @@ export const initialState = {
     },
     {
       id: 5,
-      categorie: "Football -",
+      categorie: "Football",
       hashtag: "PSG",
       rt: 985,
     },

@@ -2,9 +2,9 @@ import React from "react";
 import { k } from "../Tools/tools";
 
 function Trend({ id, categorie, hashtag, rt }) {
-  let cat = id + " - ";
-  categorie ? (cat = cat + categorie) : (cat = cat);
-  cat = cat + " Tendances";
+  let cat = id + " · ";
+  categorie ? (cat = cat + categorie + " · ") : (cat = cat);
+  cat = cat + "  Tendances";
   return (
     <div>
       <ul className="trend_item">

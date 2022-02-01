@@ -5,7 +5,7 @@ import { k } from "../Tools/tools";
 
 function Rightpage() {
   return (
-    <div className="right-page flex_v">
+    <div className="right-page ">
       <div className="input-icons">
         <i className="fas fa-search icon"> </i>
         <input type="text" placeholder="Rechercher" />

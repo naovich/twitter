@@ -59,11 +59,16 @@ body {
 
 .flex {
   display: flex;
-
   flex-direction: column;
 }
 
 .master {
+  width: 100%;
+  display: flex;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  align-items: flex-start;
 }
 
 .flex_v {
@@ -87,7 +92,6 @@ body {
 .center-page {
   width: 65%;
   max-width: 1200px;
-  margin-left: 10%;
   padding: 20px;
 }
 
@@ -95,31 +99,25 @@ body {
   width: 25%;
   max-width: 400px;
   padding: 20px;
-  position: fixed;
-  right: 0%;
+  position: sticky;
+  top: 0px;
 }
 
 .left-page {
   width: 10%;
   padding: 10px;
-  position: fixed;
-  left: 0%;
+  position: sticky;
+  top: 0px;
+  border-right: none;
 }
 
 button {
-  background-color: var(--logoColor);
   border-radius: 50px;
   border: none;
   color: white;
   font-size: 1.1rem;
   padding: 10px;
-  right: 10px;
   cursor: pointer;
-}
-
-button:disabled {
-  background-color: var(--disabledButtonTweet);
-  cursor: inherit;
 }
 
 .grey {
@@ -137,16 +135,20 @@ button:disabled {
 header {
   height: 80px;
   top: 0px;
-  position: fixed;
+  position: sticky;
   background-color: var(--headerBgColor);
-  left: 10%;
-  width: 65%;
-  max-width: 1200px;
-  padding: 20px;
+  border: none;
+  width: 100%;
+  max-width: 1400px;
 }
 
-.status {
-  margin-top: 80px;
+.status button {
+  background-color: var(--logoColor);
+}
+
+.status button:disabled {
+  background-color: var(--disabledButtonTweet);
+  cursor: inherit;
 }
 
 .status_input {
@@ -169,7 +171,6 @@ header {
 .iconstatus {
   border-top: solid var(--borderColor) 1px;
   border-bottom: solid var(--borderColor) 1px;
-
   margin-top: 10px;
   padding: 10px;
 }
@@ -218,9 +219,9 @@ header {
 
 .tweet_img {
   margin-top: 10px;
-  max-width: 600px;
   width: 100%;
-  height: auto;
+  max-height: 400px;
+  object-fit: cover;
   border-radius: 20px;
 }
 
@@ -389,17 +390,11 @@ header {
 
 @media only screen and (max-width: 1200px) {
   .center-page {
-    width: 80%;
-    margin-left: 20%;
-  }
-
-  header {
-    left: 20%;
-    width: 80%;
+    width: 90%;
   }
 
   .left-page {
-    width: 20%;
+    width: 10%;
   }
 
   .right-page {
