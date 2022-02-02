@@ -4,6 +4,7 @@ import Trends from "./pages/Trends";
 import "./css/style.css";
 import Leftpage from "./components/Leftpage";
 import Rightpage from "./components/Rightpage";
+import Overlay from "./components/Overlay";
 
 function App() {
   return (

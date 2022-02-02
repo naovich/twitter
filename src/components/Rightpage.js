@@ -2,6 +2,7 @@ import React from "react";
 import Trend from "../components/Trend";
 import { initialState } from "../data/reducer";
 import { k } from "../Tools/tools";
+import Suggestion from "./Suggestion";
 
 function Rightpage() {
   return (
@@ -36,8 +37,17 @@ function Rightpage() {
         </div>
       </div>
 
-      <div className="trends flex_v">
+      <div className=" suggestion flex_v">
         <h2>Suggestions</h2>
+
+        {initialState.suggestions.map((x) => (
+          <Suggestion
+            key={x.id}
+            nickname={x.nickname}
+            login={x.login}
+            imgProfil={x.imgProfil}
+          />
+        ))}
       </div>
     </div>
   );

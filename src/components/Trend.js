@@ -6,7 +6,7 @@ function Trend({ id, categorie, hashtag, rt }) {
   categorie ? (cat = cat + categorie + " · ") : (cat = cat);
   cat = cat + "  Tendances";
   return (
-    <div>
+    <div className=" trends_bloc">
       <ul className="trend_item">
         <li className="categorie">{cat}</li>
         <li className="hashtag">{hashtag}</li>

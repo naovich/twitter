@@ -37,17 +37,18 @@ export const initialState = {
     },
     {
       id: 2,
-      nickname: "Antonio",
-      login: "@PSGT0ni",
+      nickname: "Aurélie Casse",
+      login: "AureCasse",
       imgProfil:
-        "https://pbs.twimg.com/profile_images/1487790757742268423/wxvVgSgY_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/1469385588910563335/1XGuakT9_400x400.jpg",
       time: "18h",
-      message: "PSG Fans about Dembélé rumors",
+      message:
+        "La lumière du soleil à travers les ailes d’un colibri jacobin noir au Brésil En admiration Par Christian Spence",
       comment: 12,
       rt: 400,
       like: 1000,
       image:
-        "https://lh3.googleusercontent.com/0hTvxwcgRjoeqjkcSt34svrq9gwNmZRA4wwxhvQrAOE4bkEIAZGetdpDCB4OM1F-lgXgGtxyKuBJl4kngUaztHT6Ot67gbfLiwhJgRLWIYuvg5xiR6K8sg3vAMl4R6VdvcGZEAZa8YLF9kf_0wZNy_3mJsz9bcAdvV6lYQfiY-bHZKE5_4p4DFZOulOlTD7hmc35dr0FzhWKfRrjq4015YYbsNeoe69h7hkvw31kS2x7mBq1hkuDql-zdLTCn-UYT1aovH6duhNpDpZ5niiGLRske8GEkOvxlC0HZ_BmACXe84KERu_AFo9nqPJJ3b6_WolRvr5af1QqLg2G-qG-PQKvf6UhOb2uM_YkJZlexvOqRltkR90eZeqRVY4egnAb4CTz_ntA2dJCb9Bs6hmA-zM_oofAmKhfkSI5mldY9EsCm18KsBoV-ls9-9stHpFamQZAtzzpZ76jFfi55KiAtepKx7_cy3AEuhFTM-Od_wq3iSY1uPYtJekJGNNxZA5fbDMYsiJIecVdoAIsOcQ8RhfIsA7IJs0_oqybCSH4bNd31OT8LMNZWlPuRWJyOxZ56adH_QE7QRaooGkRpUTlbyCLSdM-djAA3DlHtNPyCS-vqqasO4feGSf5KjL-rCF1F_hTcyNNfPNZb6IHjQxzTbUuXzdwKWtMx5BiDnrq7jQtIPjqBgPkw16WslJxvINwab5ZbPeGdomNZXKhrjrgHrbg=w706-h929-no?authuser=1",
+        "https://pbs.twimg.com/media/FKQ0povX0AAKNrg?format=jpg&name=medium",
     },
     {
       id: 3,
@@ -92,6 +93,30 @@ export const initialState = {
       categorie: "Football",
       hashtag: "PSG",
       rt: 985,
+    },
+  ],
+
+  suggestions: [
+    {
+      id: 3,
+      nickname: "BFMTV",
+      login: "BFMTV",
+      imgProfil:
+        "https://pbs.twimg.com/profile_images/1165822715732930565/uz3J1eOl_400x400.jpg",
+    },
+    {
+      id: 1,
+      nickname: "Fabien Roussel",
+      login: "Fabien_Roussel",
+      imgProfil:
+        "https://pbs.twimg.com/profile_images/1483356102133751809/7z_59a5w_400x400.jpg",
+    },
+    {
+      id: 2,
+      nickname: "Yassou",
+      login: "yassou_93p",
+      imgProfil:
+        "https://pbs.twimg.com/profile_images/1484700093634818049/M9DhzlkR_400x400.jpg",
     },
   ],
 };
