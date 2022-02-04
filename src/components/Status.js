@@ -1,26 +1,40 @@
 import React, { useState } from "react";
 import { useReducer, useRef } from "react";
 import { produce } from "immer";
-import reducer, { initialState } from "../data/reducer";
+import { useStateValue } from "../data/StateProvider";
 
 function Status() {
   const inputStatus = useRef();
-  const buttonStatus = useRef();
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [buttonEnabled, setButtonEnabled] = useState(true);
+  const [{ imgProfil, nickname, login, tweets }, dispatch] = useStateValue();
 
   function postTweet() {
-    dispatch({ type: "post", payload: { messagea: "Message", time: "17h30" } });
-    console.log("rf");
+    dispatch({
+      type: "post",
+      payload: {
+        id: tweets.length,
+        nickname: nickname,
+        login: login,
+        imgProfil: imgProfil,
+        time: "15h",
+        message: inputStatus.current.value,
+        comment: 0,
+        rt: 0,
+        like: 0,
+      },
+    });
+    inputStatus.current.value = "";
+    setButtonEnabled(true);
   }
 
   return (
     <div className=" status">
-      <img src={state.imgProfil} className="img-rounded " />
+      <img src={imgProfil} className="img-rounded " />
       <input
         onChange={() =>
           inputStatus.current.value != ""
-            ? (buttonStatus.current.disabled = false)
-            : (buttonStatus.current.disabled = true)
+            ? setButtonEnabled(false)
+            : setButtonEnabled(true)
         }
         placeholder="Quoi de neuf ?"
         className="status_input"
@@ -35,7 +49,7 @@ function Status() {
         <div className="iconstatus">
           <i className="fas fa-image"></i>
           <i className="fas fa-smile"></i>
-          <button onClick={() => console.log("ok")} ref={buttonStatus} disabled>
+          <button onClick={postTweet} disabled={buttonEnabled}>
             Tweeter
           </button>
         </div>

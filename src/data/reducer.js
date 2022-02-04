@@ -131,7 +131,7 @@ const reducer = (state = initialState, action) => {
     case "post":
       return {
         ...state,
-        tweets: { ...state.tweets, tweets: action.payload },
+        tweets: [action.payload, ...state.tweets],
       };
     case "*":
       return produce(state, (draft) => {});

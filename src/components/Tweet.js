@@ -1,5 +1,6 @@
 import React from "react";
 import { k } from "../Tools/tools";
+import Overlay from "./Overlay";
 
 function Tweet({
   nickname,
@@ -13,6 +14,7 @@ function Tweet({
 }) {
   return (
     <div className="tweet pointer">
+      <Overlay />
       <img src={imgProfil} className="img-rounded pointer " />
 
       <div className="flex">
@@ -21,7 +23,13 @@ function Tweet({
           <span className="tweet_loginame pointer"> @{login}</span>
         </div>
         <span className="tweet_message ">{message && message}</span>
-        {image && <img className="tweet_img" src={image} />}
+        {image && (
+          <img
+            className="tweet_img"
+            src={image}
+            onClick={() => console.log("photo")}
+          />
+        )}
 
         <TweetInfo comment={comment} retweet={retweet} like={like} />
       </div>

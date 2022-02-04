@@ -1,10 +1,12 @@
 import React from "react";
 import Trend from "../components/Trend";
-import { initialState } from "../data/reducer";
 import { k } from "../Tools/tools";
 import Suggestion from "./Suggestion";
+import { useStateValue } from "../data/StateProvider";
 
 function Rightpage() {
+  const [{ trends, suggestions, tweets }, dispatch] = useStateValue();
+
   return (
     <div className="right-page ">
       <div className="input-icons">
@@ -20,7 +22,7 @@ function Rightpage() {
           </a>
         </div>
 
-        {initialState.trends.map((x, key) => (
+        {trends.map((x, key) => (
           <Trend
             key={x.id}
             id={x.id}
@@ -40,7 +42,7 @@ function Rightpage() {
       <div className=" suggestion flex_v">
         <h2>Suggestions</h2>
 
-        {initialState.suggestions.map((x) => (
+        {suggestions.map((x) => (
           <Suggestion
             key={x.id}
             nickname={x.nickname}
