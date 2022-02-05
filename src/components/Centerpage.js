@@ -33,6 +33,7 @@ function Centerpage() {
             comment={x.comment}
             retweet={x.rt}
             like={x.like}
+            id={x.id}
           />
         ))}
       </div>

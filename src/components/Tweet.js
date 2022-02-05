@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { k } from "../Tools/tools";
 import Overlay from "./Overlay";
+import { useStateValue } from "../data/StateProvider";
 
 function Tweet({
   nickname,
@@ -11,6 +12,7 @@ function Tweet({
   comment,
   retweet,
   like,
+  id,
 }) {
   return (
     <div className="tweet pointer">
@@ -23,15 +25,9 @@ function Tweet({
           <span className="tweet_loginame pointer"> @{login}</span>
         </div>
         <span className="tweet_message ">{message && message}</span>
-        {image && (
-          <img
-            className="tweet_img"
-            src={image}
-            onClick={() => console.log("photo")}
-          />
-        )}
+        {image && <img className="tweet_img" src={image} />}
 
-        <TweetInfo comment={comment} retweet={retweet} like={like} />
+        <TweetInfo comment={comment} retweet={retweet} like={like} id={id} />
       </div>
     </div>
   );
@@ -39,20 +35,66 @@ function Tweet({
 
 export default Tweet;
 
-function TweetInfo({ comment, retweet, like }) {
+function TweetInfo({ comment, retweet, like, id }) {
+  const [{ tweets }, dispatch] = useStateValue();
+  const [liked, setLiked] = useState();
+  const [rted, setRted] = useState();
+
+  function onLike() {
+    dispatch({
+      type: "like",
+      payload: {
+        id: id,
+        isLiked: liked,
+      },
+    });
+    setLiked(!liked);
+  }
+
+  function onRT() {
+    dispatch({
+      type: "rt",
+      payload: {
+        id: id,
+        isRted: rted,
+      },
+    });
+    setRted(!rted);
+  }
+
   return (
     <div className="flex_h tweet_iconInfo">
       <span className="twitter_comment">
         <i className="far fa-comment"></i>
         <span>{k(comment)}</span>
       </span>
-      <span className="twitter_retweet">
-        <i className="fas fa-retweet "></i>
-        {k(retweet)}
+
+      <span onClick={onRT} className="twitter_retweet">
+        {rted ? (
+          <>
+            <i className="fas fa-retweet twitter_rted "></i>{" "}
+            <span className="twitter_rted">{k(retweet)}</span>
+          </>
+        ) : (
+          <>
+            <i className="fas fa-retweet "></i>
+            <span>{k(retweet)}</span>
+          </>
+        )}
       </span>
-      <span className="twitter_like">
-        <i className="far fa-heart "></i>
-        {k(like)}
+
+      <span onClick={onLike} className="twitter_like">
+        {liked ? (
+          <>
+            <i className="fas fa-heart twitter_liked "></i>
+            <span className="twitter_liked"> {k(like)}</span>
+          </>
+        ) : (
+          <>
+            <i className="far fa-heart "></i>
+            <span> {k(like)}</span>
+          </>
+        )}
       </span>
       <span className="twitter_comment">
         <i className="far fa-share-square "></i>

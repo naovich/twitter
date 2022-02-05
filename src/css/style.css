@@ -258,6 +258,10 @@ header {
 .twitter_retweet:hover {
   color: rgb(111, 190, 123);
 }
+
+.twitter_rted {
+  color: rgb(111, 190, 123);
+}
 .twitter_retweet:hover > i {
   background-color: rgba(160, 248, 173, 0.3);
 }
@@ -266,8 +270,12 @@ header {
 .twitter_like:hover {
   color: rgb(243, 104, 146);
 }
-.twitter_like:hover > i {
-  background-color: rgba(238, 133, 133, 0.3);
+.twitter_liked {
+  color: rgb(243, 104, 146);
+}
+
+.twitter_like:hover {
+  color: rgb(243, 104, 146);
 }
 
 /*  -----------Retweet-------------- */
@@ -278,6 +286,7 @@ header {
 .retweet {
   margin-top: 10px;
 }
+
 /* --------  LEFT ---------*/
 .logo {
   color: var(--logoColor);

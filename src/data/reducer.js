@@ -20,8 +20,7 @@ export const initialState = {
       comment: 52,
       rt: 156,
       like: 632,
-      image:
-        "https://pbs.twimg.com/media/FKV64sKWUAIMslK?format=jpg&name=medium",
+      image: "http://source.unsplash.com/random",
     },
     {
       id: 1,
@@ -33,7 +32,7 @@ export const initialState = {
       message: "Je propose que Hollande se déclare maintenant.",
       comment: 1300,
       rt: 1400,
-      like: 7000,
+      like: 7123,
     },
     {
       id: 2,
@@ -47,8 +46,7 @@ export const initialState = {
       comment: 12,
       rt: 400,
       like: 1000,
-      image:
-        "https://pbs.twimg.com/media/FKQ0povX0AAKNrg?format=jpg&name=medium",
+      image: "https://images.unsplash.com/photo-1642950810976-e0a9926389ab",
     },
     {
       id: 3,
@@ -133,11 +131,24 @@ const reducer = (state = initialState, action) => {
         ...state,
         tweets: [action.payload, ...state.tweets],
       };
-    case "*":
-      return produce(state, (draft) => {});
+    case "likep":
+      return {
+        ...state,
+        tweets: [...state.tweets, action.payload],
+      };
+    case "like":
+      return produce(state, (draft) => {
+        action.payload.isLiked
+          ? draft.tweets[action.payload.id].like--
+          : draft.tweets[action.payload.id].like++;
+      });
 
-    case "/":
-      return produce(state, (draft) => {});
+    case "rt":
+      return produce(state, (draft) => {
+        action.payload.isRted
+          ? draft.tweets[action.payload.id].rt--
+          : draft.tweets[action.payload.id].rt++;
+      });
 
     case "-":
       return {
