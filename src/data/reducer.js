@@ -5,10 +5,14 @@ export const initialState = {
   userId: 0,
   nickname: "Nadhoir",
   login: "naovich",
+  subscription: 1563,
+  subscriber: 1863,
+  bio: "Passionné de développment informatique depuis toujours",
   imgProfil:
     "https://pbs.twimg.com/profile_images/2507404252/22p3u6fhoduk4dr09l89_reasonably_small.gif",
   tweets: [
     {
+      type: 0,
       id: 0,
       nickname: "Nadhoir",
       login: "naovich",
@@ -23,6 +27,7 @@ export const initialState = {
       image: "http://source.unsplash.com/random",
     },
     {
+      type: 0,
       id: 1,
       nickname: "Sandrine Rousseau",
       login: "sandrousseau",
@@ -35,6 +40,7 @@ export const initialState = {
       like: 7123,
     },
     {
+      type: 0,
       id: 2,
       nickname: "Aurélie Casse",
       login: "AureCasse",
@@ -44,11 +50,12 @@ export const initialState = {
       message:
         "La lumière du soleil à travers les ailes d’un colibri jacobin noir au Brésil En admiration Par Christian Spence",
       comment: 12,
-      rt: 400,
-      like: 1000,
+      rt: 52,
+      like: 236,
       image: "https://images.unsplash.com/photo-1642950810976-e0a9926389ab",
     },
     {
+      type: 0,
       id: 3,
       nickname: "Aliotop",
       login: "Aliotop_off",
@@ -57,9 +64,9 @@ export const initialState = {
       time: "30 janv.",
       message:
         "Sergio Ramos compte autant de blessures que de titularisations avec le PSG (3)",
-      comment: 12,
-      rt: 425,
-      like: 6500,
+      comment: 1,
+      rt: 1,
+      like: 0,
     },
   ],
 

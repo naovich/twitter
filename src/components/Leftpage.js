@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function Leftpage() {
   return (
@@ -6,35 +7,37 @@ function Leftpage() {
       <ul className="left-icon flex_v">
         <a href="#">
           <li className="logo">
-            <i className="fab fa-twitter"></i>
+            <Link to="/">
+              <i className="fab fa-twitter"></i>
+            </Link>
           </li>
         </a>
-        <a href="#">
+        <Link to="/">
           <li>
             <i className="fas fa-home"></i>
           </li>
-        </a>
+        </Link>
 
         <a className="smartphone" href="#">
           <li>
             <i className="fas fa-search"></i>
           </li>
         </a>
-        <a href="#">
+        <Link to="/notification">
           <li>
             <i className="fas fa-bell"></i>
           </li>
-        </a>
-        <a href="#">
+        </Link>
+        <Link to="/message">
           <li>
             <i className="fas fa-envelope"></i>
           </li>
-        </a>
-        <a href="#">
+        </Link>
+        <Link to="/profil">
           <li>
             <i className="fas fa-user"></i>
           </li>
-        </a>
+        </Link>
         <a href="#">
           <li>
             <i className="fas fa-ellipsis-h"></i>

@@ -103,14 +103,36 @@ function TweetInfo({ comment, retweet, like, id }) {
   );
 }
 
-export function Retweet({ author }) {
+export function Retweet({
+  author,
+  nickname,
+  login,
+  message,
+  imgProfil,
+  image,
+  comment,
+  retweet,
+  like,
+  id,
+}) {
+  //const [{ tweets, nickname }, dispatch] = useStateValue();
+
   return (
     <div className="retweet">
       <span className="tweet_nickname pointer grey">
         <i className="fas fa-retweet "></i> {author}
       </span>
-
-      <Tweet message="My retweet" nickname="Postmaster" login="Postmaster25" />
+      <Tweet
+        message={message}
+        nickname={nickname}
+        imgProfil={imgProfil}
+        login={login}
+        image={image}
+        comment={comment}
+        retweet={retweet}
+        like={like}
+        id={id}
+      />
     </div>
   );
 }

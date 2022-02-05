@@ -22,20 +22,36 @@ function Centerpage() {
       <Status />
 
       <div className="main ">
-        {tweets.map((x, key) => (
-          <Tweet
-            key={x.id}
-            message={x.message}
-            nickname={x.nickname}
-            login={x.login}
-            imgProfil={x.imgProfil}
-            image={x.image}
-            comment={x.comment}
-            retweet={x.rt}
-            like={x.like}
-            id={x.id}
-          />
-        ))}
+        {tweets.map((x, key) =>
+          x.type == 0 ? (
+            <Tweet
+              key={x.id}
+              message={x.message}
+              nickname={x.nickname}
+              login={x.login}
+              imgProfil={x.imgProfil}
+              image={x.image}
+              comment={x.comment}
+              retweet={x.rt}
+              like={x.like}
+              id={x.id}
+            />
+          ) : (
+            <Retweet
+              author={x.nickname}
+              key={tweets[x.tweetId].id}
+              message={tweets[x.tweetId].message}
+              nickname={tweets[x.tweetId].nickname}
+              login={tweets[x.tweetId].login}
+              imgProfil={tweets[x.tweetId].imgProfil}
+              image={tweets[x.tweetId].image}
+              comment={tweets[x.tweetId].comment}
+              retweet={tweets[x.tweetId].rt}
+              like={tweets[x.tweetId].like}
+              id={tweets[x.tweetId].id}
+            />
+          )
+        )}
       </div>
     </div>
   );
