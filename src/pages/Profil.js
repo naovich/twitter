@@ -1,12 +1,124 @@
-import React from "react";
+import React, { useState } from "react";
 import { useStateValue } from "../data/StateProvider";
 import NavigateBack from "../components/NavigateBack";
+import Tweet, { Retweet } from "../components/Tweet";
 
 function Profil() {
   const [
-    { nickname, imgProfil, login, subscription, subscriber, bio },
+    { tweets, nickname, imgProfil, login, subscription, subscriber, bio },
     dispatch,
   ] = useStateValue();
+
+  const [activeClassTweet, setActiveClassTweet] = useState(
+    "profil_tab_span_active"
+  );
+  const [activeClassReponse, setActiveClassReponse] = useState("");
+  const [activeClassMedia, setActiveClassMedia] = useState("");
+  const [activeClassLike, setActiveClassLike] = useState("");
+
+  const [activeRender, setActiveRender] = useState(showTw);
+
+  // ------------- SHOW TWEET -----------------
+
+  function showTweets() {
+    setActiveClassTweet("profil_tab_span_active");
+    setActiveClassReponse("");
+    setActiveClassMedia("");
+    setActiveClassLike("");
+
+    setActiveRender(showTw);
+  }
+
+  function showTw() {
+    return tweets
+      .slice(0)
+      .reverse()
+      .map(
+        (x, key) =>
+          x.type == 0 &&
+          x.login == login && (
+            <Tweet
+              key={x.id}
+              message={x.message}
+              nickname={x.nickname}
+              login={x.login}
+              imgProfil={x.imgProfil}
+              image={x.image}
+              comment={x.comment}
+              retweet={x.rt}
+              like={x.like}
+              id={x.id}
+            />
+          )
+      );
+  }
+
+  // ------------- SHOW REPONSES -----------------
+
+  function showReponses() {
+    setActiveClassTweet("");
+    setActiveClassReponse("profil_tab_span_active");
+    setActiveClassMedia("");
+    setActiveClassLike("");
+
+    setActiveRender(showRe);
+  }
+
+  function showRe() {
+    return <></>;
+  }
+
+  // ------------- SHOW MEDIA -----------------
+
+  function showMedias() {
+    setActiveClassTweet("");
+    setActiveClassReponse("");
+    setActiveClassMedia("profil_tab_span_active");
+    setActiveClassLike("");
+
+    setActiveRender(showMe);
+  }
+
+  function showMe() {
+    return tweets
+      .slice(0)
+      .reverse()
+      .map(
+        (x, key) =>
+          x.type == 0 &&
+          x.login == login &&
+          x.image && (
+            <Tweet
+              key={x.id}
+              message={x.message}
+              nickname={x.nickname}
+              login={x.login}
+              imgProfil={x.imgProfil}
+              image={x.image}
+              comment={x.comment}
+              retweet={x.rt}
+              like={x.like}
+              id={x.id}
+            />
+          )
+      );
+  }
+
+  // ------------- SHOW LIKE -----------------
+
+  function showLikes() {
+    setActiveClassTweet("");
+    setActiveClassReponse("");
+    setActiveClassMedia("");
+    setActiveClassLike("profil_tab_span_active");
+
+    setActiveRender(showLi);
+  }
+
+  function showLi() {
+    return <></>;
+  }
+
   return (
     <div className="center-page">
       <header>
@@ -33,12 +145,22 @@ function Profil() {
           <span>abonnés</span>
         </div>
         <div className="flex_h profil_tab">
-          <span className="profil_tab_span_active">Tweets</span>
-          <span>Réponses</span>
-          <span>Médias</span>
-          <span>J'aime</span>
+          <span onClick={showTweets} className={activeClassTweet}>
+            Tweets
+          </span>
+          <span onClick={showReponses} className={activeClassReponse}>
+            Réponses
+          </span>
+          <span onClick={showMedias} className={activeClassMedia}>
+            Médias
+          </span>
+          <span onClick={showLikes} className={activeClassLike}>
+            J'aime
+          </span>
         </div>
       </div>
+
+      <div className="main ">{activeRender}</div>
     </div>
   );
 }

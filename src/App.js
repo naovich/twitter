@@ -9,6 +9,7 @@ import Profil from "./pages/Profil";
 import Error404 from "./pages/Error404";
 import Message from "./pages/Message";
 import Notifications from "./pages/Notifications";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
           <Route path="/profil" element={<Profil />} />
           <Route path="/message" element={<Message />} />
           <Route path="/notification" element={<Notifications />} />
-          <Route path="/Trends" element={<Trends />} />
+          <Route path="/trends" element={<Trends />} />
+          <Route path="/search" element={<Search />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
         <Rightpage />

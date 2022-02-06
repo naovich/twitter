@@ -3,6 +3,7 @@ import Trend from "../components/Trend";
 import { k } from "../Tools/tools";
 import Suggestion from "./Suggestion";
 import { useStateValue } from "../data/StateProvider";
+import { Link } from "react-router-dom";
 
 function Rightpage() {
   const [{ trends, suggestions, tweets }, dispatch] = useStateValue();

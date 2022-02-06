@@ -37,11 +37,6 @@ function Leftpage() {
             <i className="fas fa-user"></i>
           </li>
         </Link>
-        <a href="#">
-          <li>
-            <i className="fas fa-ellipsis-h"></i>
-          </li>
-        </a>
       </ul>
     </div>
   );

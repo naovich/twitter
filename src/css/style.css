@@ -32,6 +32,7 @@
 header {
   background-color: var(--bgColor);
   border: var(--borderColor) solid 1px;
+  z-index: 10;
 }
 ul,
 li {

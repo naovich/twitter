@@ -10,7 +10,6 @@ const imgsrc =
   "https://pbs.twimg.com/media/FKV64sKWUAIMslK?format=jpg&name=medium";
 
 function Centerpage() {
-  //const [state, dispatch] = useStateValue();
   const [{ tweets }, dispatch] = useStateValue();
 
   return (

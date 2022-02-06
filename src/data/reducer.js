@@ -10,10 +10,56 @@ export const initialState = {
   bio: "Passionné de développment informatique depuis toujours",
   imgProfil:
     "https://pbs.twimg.com/profile_images/2507404252/22p3u6fhoduk4dr09l89_reasonably_small.gif",
+  search: "",
   tweets: [
     {
       type: 0,
       id: 0,
+      nickname: "Nadhoir",
+      login: "naovich",
+      imgProfil:
+        "https://pbs.twimg.com/profile_images/2507404252/22p3u6fhoduk4dr09l89_reasonably_small.gif",
+      time: "5 févr.",
+      message: "Paris, ville lumière",
+      comment: 21,
+      rt: 23,
+      like: 5,
+      image:
+        "https://pbs.twimg.com/media/FIrTcoaWUAoDPTQ?format=jpg&name=large",
+    },
+    {
+      type: 0,
+      id: 1,
+      nickname: "Korben",
+      login: "korben",
+      imgProfil:
+        "https://pbs.twimg.com/profile_images/1490386429347876870/-uYFrN2m_400x400.png",
+      time: "5 févr.",
+      message:
+        "Quand on y pense, les meilleurs humoristes et artistes français sont belges.",
+      comment: 3,
+      rt: 123,
+      like: 236,
+    },
+    {
+      type: 0,
+      id: 2,
+      nickname: "Nadhoir",
+      login: "naovich",
+      imgProfil:
+        "https://pbs.twimg.com/profile_images/2507404252/22p3u6fhoduk4dr09l89_reasonably_small.gif",
+      time: "2 févr.",
+      message:
+        "Il avait commencé son mois de janvier par une grosse polémique, il le referme sur une gratification. Le rappeur Gims, couronné de nombreux succès commerciaux en France grâce à ses tubes internationaux, a fait grincer des dents au lendemain des fêtes de fin",
+      comment: 2,
+      rt: 63,
+      like: 102,
+      image: "http://source.unsplash.com/random",
+    },
+
+    {
+      type: 0,
+      id: 3,
       nickname: "Sandrine Rousseau",
       login: "sandrousseau",
       imgProfil:
@@ -27,7 +73,7 @@ export const initialState = {
 
     {
       type: 0,
-      id: 1,
+      id: 4,
       nickname: "Aliotop",
       login: "Aliotop_off",
       imgProfil:
@@ -41,7 +87,7 @@ export const initialState = {
     },
     {
       type: 0,
-      id: 2,
+      id: 5,
       nickname: "Aurélie Casse",
       login: "AureCasse",
       imgProfil:
@@ -56,18 +102,16 @@ export const initialState = {
     },
     {
       type: 0,
-      id: 3,
+      id: 6,
       nickname: "Nadhoir",
       login: "naovich",
       imgProfil:
         "https://pbs.twimg.com/profile_images/2507404252/22p3u6fhoduk4dr09l89_reasonably_small.gif",
       time: "19h",
-      message:
-        "Il avait commencé son mois de janvier par une grosse polémique, il le referme sur une gratification. Le rappeur Gims, couronné de nombreux succès commerciaux en France grâce à ses tubes internationaux, a fait grincer des dents au lendemain des fêtes de fin",
+      message: "React est la bibilothèque la plus utilisée",
       comment: 52,
       rt: 156,
       like: 632,
-      image: "http://source.unsplash.com/random",
     },
   ],
 
@@ -139,10 +183,10 @@ const reducer = (state = initialState, action) => {
         ...state,
         tweets: [...state.tweets, action.payload],
       };
-    case "likep":
+    case "search":
       return {
         ...state,
-        tweets: [...state.tweets, action.payload],
+        search: action.payload,
       };
     case "like":
       return produce(state, (draft) => {
