@@ -14,21 +14,6 @@ export const initialState = {
     {
       type: 0,
       id: 0,
-      nickname: "Nadhoir",
-      login: "naovich",
-      imgProfil:
-        "https://pbs.twimg.com/profile_images/2507404252/22p3u6fhoduk4dr09l89_reasonably_small.gif",
-      time: "19h",
-      message:
-        "Il avait commencé son mois de janvier par une grosse polémique, il le referme sur une gratification. Le rappeur Gims, couronné de nombreux succès commerciaux en France grâce à ses tubes internationaux, a fait grincer des dents au lendemain des fêtes de fin",
-      comment: 52,
-      rt: 156,
-      like: 632,
-      image: "http://source.unsplash.com/random",
-    },
-    {
-      type: 0,
-      id: 1,
       nickname: "Sandrine Rousseau",
       login: "sandrousseau",
       imgProfil:
@@ -38,6 +23,21 @@ export const initialState = {
       comment: 1300,
       rt: 1400,
       like: 7123,
+    },
+
+    {
+      type: 0,
+      id: 1,
+      nickname: "Aliotop",
+      login: "Aliotop_off",
+      imgProfil:
+        "https://pbs.twimg.com/profile_images/1486396762055131136/Gx8KZ_6A_400x400.jpg",
+      time: "30 janv.",
+      message:
+        "Sergio Ramos compte autant de blessures que de titularisations avec le PSG (3)",
+      comment: 1,
+      rt: 1,
+      like: 0,
     },
     {
       type: 0,
@@ -57,16 +57,17 @@ export const initialState = {
     {
       type: 0,
       id: 3,
-      nickname: "Aliotop",
-      login: "Aliotop_off",
+      nickname: "Nadhoir",
+      login: "naovich",
       imgProfil:
-        "https://pbs.twimg.com/profile_images/1486396762055131136/Gx8KZ_6A_400x400.jpg",
-      time: "30 janv.",
+        "https://pbs.twimg.com/profile_images/2507404252/22p3u6fhoduk4dr09l89_reasonably_small.gif",
+      time: "19h",
       message:
-        "Sergio Ramos compte autant de blessures que de titularisations avec le PSG (3)",
-      comment: 1,
-      rt: 1,
-      like: 0,
+        "Il avait commencé son mois de janvier par une grosse polémique, il le referme sur une gratification. Le rappeur Gims, couronné de nombreux succès commerciaux en France grâce à ses tubes internationaux, a fait grincer des dents au lendemain des fêtes de fin",
+      comment: 52,
+      rt: 156,
+      like: 632,
+      image: "http://source.unsplash.com/random",
     },
   ],
 
@@ -136,7 +137,7 @@ const reducer = (state = initialState, action) => {
     case "post":
       return {
         ...state,
-        tweets: [action.payload, ...state.tweets],
+        tweets: [...state.tweets, action.payload],
       };
     case "likep":
       return {

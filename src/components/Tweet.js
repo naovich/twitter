@@ -37,8 +37,8 @@ export default Tweet;
 
 function TweetInfo({ comment, retweet, like, id }) {
   const [{ tweets }, dispatch] = useStateValue();
-  const [liked, setLiked] = useState();
-  const [rted, setRted] = useState();
+  const [liked, setLiked] = useState(false);
+  const [rted, setRted] = useState(false);
 
   function onLike() {
     dispatch({

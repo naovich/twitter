@@ -12,12 +12,12 @@ function Status() {
     dispatch({
       type: "post",
       payload: {
+        type: 0,
         id: tweets.length,
         nickname: nickname,
         login: login,
         imgProfil: imgProfil,
         time: "15h",
-        image: "http://source.unsplash.com/random",
         message: inputStatus.current.value,
         comment: 0,
         rt: 0,

@@ -5,13 +5,12 @@ function Leftpage() {
   return (
     <div className="left-page">
       <ul className="left-icon flex_v">
-        <a href="#">
-          <li className="logo">
-            <Link to="/">
-              <i className="fab fa-twitter"></i>
-            </Link>
-          </li>
-        </a>
+        <li className="logo">
+          <Link to="/">
+            <i className="fab fa-twitter"></i>
+          </Link>
+        </li>
+
         <Link to="/">
           <li>
             <i className="fas fa-home"></i>
