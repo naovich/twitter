@@ -7,12 +7,14 @@ function Tweet({
   nickname,
   login,
   message,
+  date,
   imgProfil,
   image,
   comment,
   retweet,
   like,
   id,
+  keyId,
 }) {
   return (
     <div className="tweet pointer">
@@ -27,7 +29,13 @@ function Tweet({
         <span className="tweet_message ">{message && message}</span>
         {image && <img className="tweet_img" src={image} />}
 
-        <TweetInfo comment={comment} retweet={retweet} like={like} id={id} />
+        <TweetInfo
+          comment={comment}
+          retweet={retweet}
+          like={like}
+          id={id}
+          keyId={keyId}
+        />
       </div>
     </div>
   );
@@ -35,7 +43,7 @@ function Tweet({
 
 export default Tweet;
 
-function TweetInfo({ comment, retweet, like, id }) {
+function TweetInfo({ comment, retweet, like, id, keyId }) {
   const [{ tweets }, dispatch] = useStateValue();
   const [liked, setLiked] = useState(false);
   const [rted, setRted] = useState(false);
@@ -45,6 +53,7 @@ function TweetInfo({ comment, retweet, like, id }) {
       type: "like",
       payload: {
         id: id,
+        keyId: keyId,
         isLiked: liked,
       },
     });
@@ -56,6 +65,7 @@ function TweetInfo({ comment, retweet, like, id }) {
       type: "rt",
       payload: {
         id: id,
+        keyId: keyId,
         isRted: rted,
       },
     });

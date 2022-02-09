@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import Status from "./Status";
 import Tweet, { Retweet } from "./Tweet";
 //import reducer, { initialState } from "../data/reducer";
@@ -10,7 +10,18 @@ const imgsrc =
   "https://pbs.twimg.com/media/FKV64sKWUAIMslK?format=jpg&name=medium";
 
 function Centerpage() {
-  const [{ tweets }, dispatch] = useStateValue();
+  const [{ tweets, userId }, dispatch] = useStateValue();
+
+  function getTweet() {
+    dispatch({
+      type: "wall",
+      payload: userId,
+    });
+  }
+
+  useEffect(() => {
+    getTweet();
+  }, []);
 
   return (
     <div className="center-page">
@@ -24,36 +35,22 @@ function Centerpage() {
         {tweets
           .slice(0)
           .reverse()
-          .map((x, key) =>
-            x.type == 0 ? (
-              <Tweet
-                key={x.id}
-                message={x.message}
-                nickname={x.nickname}
-                login={x.login}
-                imgProfil={x.imgProfil}
-                image={x.image}
-                comment={x.comment}
-                retweet={x.rt}
-                like={x.like}
-                id={x.id}
-              />
-            ) : (
-              <Retweet
-                author={x.nickname}
-                key={tweets[x.tweetId].id}
-                message={tweets[x.tweetId].message}
-                nickname={tweets[x.tweetId].nickname}
-                login={tweets[x.tweetId].login}
-                imgProfil={tweets[x.tweetId].imgProfil}
-                image={tweets[x.tweetId].image}
-                comment={tweets[x.tweetId].comment}
-                retweet={tweets[x.tweetId].rt}
-                like={tweets[x.tweetId].like}
-                id={tweets[x.tweetId].id}
-              />
-            )
-          )}
+          .map((x, index) => (
+            <Tweet
+              key={index}
+              keyId={x.keyId}
+              message={x.message}
+              nickname={x.nickname}
+              login={x.login}
+              date={x.date}
+              imgProfil={x.imgProfil}
+              image={x.image}
+              comment={x.comment}
+              retweet={x.rt}
+              like={x.like}
+              id={x.id}
+            />
+          ))}
       </div>
     </div>
   );

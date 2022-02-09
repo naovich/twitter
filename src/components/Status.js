@@ -6,18 +6,20 @@ import { useStateValue } from "../data/StateProvider";
 function Status() {
   const inputStatus = useRef();
   const [buttonEnabled, setButtonEnabled] = useState(true);
-  const [{ imgProfil, nickname, login, tweets }, dispatch] = useStateValue();
+  const [{ userId, imgProfil, nickname, login, tweets }, dispatch] =
+    useStateValue();
 
   function postTweet() {
     dispatch({
       type: "post",
       payload: {
         type: 0,
-        id: tweets.length,
+        id: userId + "-" + tweets.length,
+        keyId: tweets.length,
         nickname: nickname,
         login: login,
         imgProfil: imgProfil,
-        time: "15h",
+        date: Date.now(),
         message: inputStatus.current.value,
         comment: 0,
         rt: 0,

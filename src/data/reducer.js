@@ -1,7 +1,116 @@
 import { useReducer } from "react";
 import { produce } from "immer";
+import database from "./database";
 
+export const userId = 0;
 export const initialState = {
+  userId: userId,
+  imgProfil: database.users[userId].imgProfil,
+  nickname: database.users[userId].nickname,
+  login: database.users[userId].login,
+  bio: database.users[userId].bio,
+  subscription: database.users[userId].subscription,
+  subscriber: database.users[userId].subscriber,
+  tweets: [],
+
+  trends: database.trends,
+  suggestions: database.suggestions,
+};
+
+function getWallData(id) {
+  const wall = database.users[id].subscriptions;
+  const wall2 = [];
+  let n = 0;
+
+  for (let i = 0; i < wall.length; i++) {
+    n++;
+    for (let j = 0; j < database.users[wall[i]].tweets.length; j++) {
+      n++;
+      database.users[wall[i]].tweets[j].nickname =
+        database.users[wall[i]].nickname;
+
+      //  database.users[wall[i]].tweets[j].date =
+      //   database.users[wall[i]].tweets[j].date;
+
+      database.users[wall[i]].tweets[j].keyId = -1;
+
+      database.users[wall[i]].tweets[j].id =
+        database.users[wall[i]].userId +
+        "-" +
+        database.users[wall[i]].tweets[j].id;
+
+      database.users[wall[i]].tweets[j].login = database.users[wall[i]].login;
+      database.users[wall[i]].tweets[j].imgProfil =
+        database.users[wall[i]].imgProfil;
+
+      wall2.push(database.users[wall[i]].tweets[j]);
+    }
+  }
+  wall2.sort(function (a, b) {
+    return new Date(b.date) - new Date(a.date);
+  });
+
+  wall2.map((x, index) => (x.keyId = index));
+
+  return wall2;
+}
+
+const reducer = (state = initialState, action) => {
+  const ap = action.payload;
+  switch (action.type) {
+    case "wall":
+      return {
+        ...state,
+        tweets: getWallData(action.payload),
+      };
+
+    case "post":
+      return {
+        ...state,
+        tweets: [...state.tweets, action.payload],
+      };
+    case "search":
+      return {
+        ...state,
+        search: action.payload,
+      };
+    case "like":
+      return produce(state, (draft) => {
+        // const userIdTweetId = action.payload.id.split("-");
+        // action.payload.isLiked
+        //  ? draft.userId[userIdTweetId[0]].tweets[userIdTweetId[1]].like--
+        //   : draft.userId[userIdTweetId[0]].tweets[userIdTweetId[1]].like++;
+
+        action.payload.isLiked
+          ? draft.tweets[action.payload.keyId].like--
+          : draft.tweets[action.payload.keyId].like++;
+      });
+
+    case "rt":
+      return produce(state, (draft) => {
+        action.payload.isRted
+          ? draft.tweets[action.payload.keyId].rt--
+          : draft.tweets[action.payload.keyId].rt++;
+      });
+
+    case "-":
+      return {
+        ...state,
+        item: { ...state.item, a2: 333 },
+      };
+
+    case "add":
+      return {
+        ...state,
+        nums: [...state.nums, action.payload.a],
+      };
+    default:
+      return {};
+  }
+};
+export default reducer;
+
+export const initialState1 = {
   userId: 0,
   nickname: "Nadhoir",
   login: "naovich",
@@ -152,7 +261,7 @@ export const initialState = {
       nickname: "BFMTV",
       login: "BFMTV",
       imgProfil:
-        "https://pbs.twimg.com/profile_images/1165822715732930565/uz3J1eOl_400x400.jpg",
+        "https://pbs.twimg.com/profile_images/1489959309148659715/Vf0JLG2c_400x400.jpg",
     },
     {
       id: 1,
@@ -170,51 +279,3 @@ export const initialState = {
     },
   ],
 };
-
-// Selector
-/*export const getAllTweet = (tweets) =>
-  tweets?.reduce((amount, item) => item.price + amount, 0);*/
-
-const reducer = (state = initialState, action) => {
-  const ap = action.payload;
-  switch (action.type) {
-    case "post":
-      return {
-        ...state,
-        tweets: [...state.tweets, action.payload],
-      };
-    case "search":
-      return {
-        ...state,
-        search: action.payload,
-      };
-    case "like":
-      return produce(state, (draft) => {
-        action.payload.isLiked
-          ? draft.tweets[action.payload.id].like--
-          : draft.tweets[action.payload.id].like++;
-      });
-
-    case "rt":
-      return produce(state, (draft) => {
-        action.payload.isRted
-          ? draft.tweets[action.payload.id].rt--
-          : draft.tweets[action.payload.id].rt++;
-      });
-
-    case "-":
-      return {
-        ...state,
-        item: { ...state.item, a2: 333 },
-      };
-
-    case "add":
-      return {
-        ...state,
-        nums: [...state.nums, action.payload.a],
-      };
-    default:
-      return {};
-  }
-};
-export default reducer;
