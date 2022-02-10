@@ -15,6 +15,8 @@ function Tweet({
   like,
   id,
   keyId,
+  likeOn,
+  rtOn,
 }) {
   return (
     <div className="tweet pointer">
@@ -35,6 +37,8 @@ function Tweet({
           like={like}
           id={id}
           keyId={keyId}
+          likeOn={likeOn}
+          rtOn={rtOn}
         />
       </div>
     </div>
@@ -43,10 +47,8 @@ function Tweet({
 
 export default Tweet;
 
-function TweetInfo({ comment, retweet, like, id, keyId }) {
+function TweetInfo({ comment, retweet, like, id, keyId, likeOn, rtOn }) {
   const [{ tweets }, dispatch] = useStateValue();
-  const [liked, setLiked] = useState(false);
-  const [rted, setRted] = useState(false);
 
   function onLike() {
     dispatch({
@@ -54,10 +56,8 @@ function TweetInfo({ comment, retweet, like, id, keyId }) {
       payload: {
         id: id,
         keyId: keyId,
-        isLiked: liked,
       },
     });
-    setLiked(!liked);
   }
 
   function onRT() {
@@ -66,10 +66,8 @@ function TweetInfo({ comment, retweet, like, id, keyId }) {
       payload: {
         id: id,
         keyId: keyId,
-        isRted: rted,
       },
     });
-    setRted(!rted);
   }
 
   return (
@@ -80,7 +78,7 @@ function TweetInfo({ comment, retweet, like, id, keyId }) {
       </span>
 
       <span onClick={onRT} className="twitter_retweet">
-        {rted ? (
+        {rtOn ? (
           <>
             <i className="fas fa-retweet twitter_rted "></i>{" "}
             <span className="twitter_rted">{k(retweet)}</span>
@@ -94,7 +92,7 @@ function TweetInfo({ comment, retweet, like, id, keyId }) {
       </span>
 
       <span onClick={onLike} className="twitter_like">
-        {liked ? (
+        {likeOn ? (
           <>
             <i className="fas fa-heart twitter_liked "></i>
             <span className="twitter_liked"> {k(like)}</span>

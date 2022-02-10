@@ -5,6 +5,17 @@ import database from "./database";
 export const userId = 0;
 export const initialState = {
   userId: userId,
+  profilId: userId,
+  userProfil: {
+    imgProfil: "",
+    nickname: "",
+    login: "",
+    bio: "",
+    subscription: 0,
+    subscriber: 0,
+    tweets: [],
+  },
+  init: false,
   imgProfil: database.users[userId].imgProfil,
   nickname: database.users[userId].nickname,
   login: database.users[userId].login,
@@ -12,7 +23,7 @@ export const initialState = {
   subscription: database.users[userId].subscription,
   subscriber: database.users[userId].subscriber,
   tweets: [],
-
+  tweetsUser: [],
   trends: database.trends,
   suggestions: database.suggestions,
 };
@@ -21,31 +32,54 @@ function getWallData(id) {
   const wall = database.users[id].subscriptions;
   const wall2 = [];
   let n = 0;
+  const exp = database.users;
 
   for (let i = 0; i < wall.length; i++) {
-    n++;
     for (let j = 0; j < database.users[wall[i]].tweets.length; j++) {
-      n++;
-      database.users[wall[i]].tweets[j].nickname =
-        database.users[wall[i]].nickname;
+      exp[wall[i]].tweets[j].nickname = exp[wall[i]].nickname;
 
       //  database.users[wall[i]].tweets[j].date =
       //   database.users[wall[i]].tweets[j].date;
 
-      database.users[wall[i]].tweets[j].keyId = -1;
+      exp[wall[i]].tweets[j].keyId = -1;
 
-      database.users[wall[i]].tweets[j].id =
-        database.users[wall[i]].userId +
-        "-" +
-        database.users[wall[i]].tweets[j].id;
+      exp[wall[i]].tweets[j].id = {
+        user: exp[wall[i]].userId,
+        id: exp[wall[i]].tweets[j].id,
+      };
 
-      database.users[wall[i]].tweets[j].login = database.users[wall[i]].login;
-      database.users[wall[i]].tweets[j].imgProfil =
-        database.users[wall[i]].imgProfil;
+      exp[wall[i]].tweets[j].login = exp[wall[i]].login;
+      exp[wall[i]].tweets[j].imgProfil = exp[wall[i]].imgProfil;
 
-      wall2.push(database.users[wall[i]].tweets[j]);
+      wall2.push(exp[wall[i]].tweets[j]);
     }
   }
+  wall2.sort(function (a, b) {
+    return new Date(b.date) - new Date(a.date);
+  });
+
+  wall2.map((x, index) => (x.keyId = index));
+
+  return wall2;
+}
+
+function getWallDataProfil(id) {
+  const wall2 = [];
+  const exp = database.users[id];
+
+  for (let j = 0; j < exp.tweets.length; j++) {
+    exp.tweets[j].keyId = -1;
+    exp.tweets[j].id = {
+      user: id,
+      id: exp.tweets[j].id,
+    };
+    exp.tweets[j].nickname = exp.nickname;
+    exp.tweets[j].login = exp.login;
+    exp.tweets[j].imgProfil = exp.imgProfil;
+
+    wall2.push(exp.tweets[j]);
+  }
+
   wall2.sort(function (a, b) {
     return new Date(b.date) - new Date(a.date);
   });
@@ -59,10 +93,23 @@ const reducer = (state = initialState, action) => {
   const ap = action.payload;
   switch (action.type) {
     case "wall":
-      return {
-        ...state,
-        tweets: getWallData(action.payload),
-      };
+      return produce(state, (draft) => {
+        draft.tweets = getWallData(action.payload);
+        draft.init = true;
+      });
+    case "profil":
+      return produce(state, (draft) => {
+        // draft.tweets = getWallDataProfil(action.payload);
+        draft.userProfil = {
+          imgProfil: database.users[action.payload].imgProfil,
+          nickname: database.users[action.payload].nickname,
+          login: database.users[action.payload].login,
+          bio: database.users[action.payload].bio,
+          subscription: database.users[action.payload].subscription,
+          subscriber: database.users[action.payload].subscriber,
+          tweets: getWallDataProfil(action.payload),
+        };
+      });
 
     case "post":
       return {
@@ -76,21 +123,35 @@ const reducer = (state = initialState, action) => {
       };
     case "like":
       return produce(state, (draft) => {
-        // const userIdTweetId = action.payload.id.split("-");
-        // action.payload.isLiked
-        //  ? draft.userId[userIdTweetId[0]].tweets[userIdTweetId[1]].like--
-        //   : draft.userId[userIdTweetId[0]].tweets[userIdTweetId[1]].like++;
+        //const userIdTweetId = action.payload.id.split("-");
 
-        action.payload.isLiked
-          ? draft.tweets[action.payload.keyId].like--
-          : draft.tweets[action.payload.keyId].like++;
+        const request = draft.tweets[action.payload.keyId];
+        if (request.likeOn) {
+          request.like--;
+          // database.users[action.payload.id.user].tweets[action.payload.id.id]
+          //  .like--;
+          request.likeOn = false;
+        } else {
+          request.like++;
+          //  database.users[action.payload.id.user].tweets[action.payload.id.id]
+          //   .like++;
+          request.likeOn = true;
+        }
       });
 
     case "rt":
       return produce(state, (draft) => {
-        action.payload.isRted
-          ? draft.tweets[action.payload.keyId].rt--
-          : draft.tweets[action.payload.keyId].rt++;
+        const request = draft.tweets[action.payload.keyId];
+
+        if (request.rtOn) {
+          request.rt--;
+          //  database.user[userIdTweetId[0]].tweets[userIdTweetId[1]].rt--;
+          request.rtOn = false;
+        } else {
+          request.rt++;
+          // database.user[userIdTweetId[0]].tweets[userIdTweetId[1]].rt++;
+          request.rtOn = true;
+        }
       });
 
     case "-":

@@ -10,7 +10,7 @@ const imgsrc =
   "https://pbs.twimg.com/media/FKV64sKWUAIMslK?format=jpg&name=medium";
 
 function Centerpage() {
-  const [{ tweets, userId }, dispatch] = useStateValue();
+  const [{ tweets, userId, init }, dispatch] = useStateValue();
 
   function getTweet() {
     dispatch({
@@ -20,7 +20,8 @@ function Centerpage() {
   }
 
   useEffect(() => {
-    getTweet();
+    if (!init) getTweet();
+    console.log("init:" + init);
   }, []);
 
   return (
@@ -48,6 +49,8 @@ function Centerpage() {
               comment={x.comment}
               retweet={x.rt}
               like={x.like}
+              likeOn={x.likeOn}
+              rtOn={x.rtOn}
               id={x.id}
             />
           ))}

@@ -34,19 +34,23 @@ function Profil() {
       .slice(0)
       .reverse()
       .map(
-        (x, key) =>
+        (x, index) =>
           x.type == 0 &&
           x.login == login && (
             <Tweet
-              key={x.id}
+              key={index}
+              keyId={x.keyId}
               message={x.message}
               nickname={x.nickname}
               login={x.login}
+              date={x.date}
               imgProfil={x.imgProfil}
               image={x.image}
               comment={x.comment}
               retweet={x.rt}
               like={x.like}
+              likeOn={x.likeOn}
+              rtOn={x.rtOn}
               id={x.id}
             />
           )
@@ -84,20 +88,24 @@ function Profil() {
       .slice(0)
       .reverse()
       .map(
-        (x, key) =>
+        (x, index) =>
           x.type == 0 &&
           x.login == login &&
           x.image && (
             <Tweet
-              key={x.id}
+              key={index}
+              keyId={x.keyId}
               message={x.message}
               nickname={x.nickname}
               login={x.login}
+              date={x.date}
               imgProfil={x.imgProfil}
               image={x.image}
               comment={x.comment}
               retweet={x.rt}
               like={x.like}
+              likeOn={x.likeOn}
+              rtOn={x.rtOn}
               id={x.id}
             />
           )
