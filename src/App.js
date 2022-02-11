@@ -19,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/profil" element={<Profil />} />
+          <Route path="/:profil" element={<Profil />} />
           <Route path="/message" element={<Message />} />
           <Route path="/notification" element={<Notifications />} />
           <Route path="/trends" element={<Trends />} />

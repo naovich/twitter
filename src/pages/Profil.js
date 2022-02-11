@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useStateValue } from "../data/StateProvider";
 import NavigateBack from "../components/NavigateBack";
 import Tweet, { Retweet } from "../components/Tweet";
+import { useParams } from "react-router-dom";
 
 function Profil() {
+  const { profil } = useParams();
+  const [user, setUser] = useState();
   const [{ tweets, userProfil, currentUser }, dispatch] = useStateValue();
 
   const [activeClassTweet, setActiveClassTweet] = useState(
@@ -15,6 +18,10 @@ function Profil() {
 
   const [activeRender, setActiveRender] = useState(showTw);
 
+  /*useEffect(() => {
+    fetch(`http://localhost:3000/${profil}`).then(setUser);
+  }, profil);
+*/
   // ------------- SHOW TWEET -----------------
 
   function showTweets() {
@@ -123,15 +130,13 @@ function Profil() {
   function showLi() {
     return <></>;
   }
-  window.scrollTo(0, 0);
+  //window.scrollTo(0, 0);
   return (
     <div className="center-page">
       <header>
         <div className="back">
           <NavigateBack />
-          <h2>
-            {userProfil.nickname} {userProfil.userId}
-          </h2>
+          <h2>{userProfil.nickname}</h2>
         </div>
       </header>
 
@@ -170,7 +175,33 @@ function Profil() {
         </div>
       </div>
 
-      <div className="main ">{activeRender}</div>
+      <div className="main ">
+        {tweets
+          .slice(0)
+          .reverse()
+          .map(
+            (x, index) =>
+              x.type == 0 &&
+              x.login == userProfil.login && (
+                <Tweet
+                  key={index}
+                  keyId={x.keyId}
+                  message={x.message}
+                  nickname={x.nickname}
+                  login={x.login}
+                  date={x.date}
+                  imgProfil={x.imgProfil}
+                  image={x.image}
+                  comment={x.comment}
+                  retweet={x.rt}
+                  like={x.like}
+                  likeOn={x.likeOn}
+                  rtOn={x.rtOn}
+                  id={x.id}
+                />
+              )
+          )}
+      </div>
     </div>
   );
 }
