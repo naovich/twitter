@@ -6,19 +6,18 @@ import { useStateValue } from "../data/StateProvider";
 function Status() {
   const inputStatus = useRef();
   const [buttonEnabled, setButtonEnabled] = useState(true);
-  const [{ userId, imgProfil, nickname, login, tweets }, dispatch] =
-    useStateValue();
+  const [{ currentUser, tweets }, dispatch] = useStateValue();
 
   function postTweet() {
     dispatch({
       type: "post",
       payload: {
         type: 0,
-        id: userId + "-" + tweets.length,
+        id: currentUser.userId + "-" + tweets.length,
         keyId: tweets.length,
-        nickname: nickname,
-        login: login,
-        imgProfil: imgProfil,
+        nickname: currentUser.nickname,
+        login: currentUser.login,
+        imgProfil: currentUser.imgProfil,
         date: Date.now(),
         message: inputStatus.current.value,
         comment: 0,
@@ -32,7 +31,7 @@ function Status() {
 
   return (
     <div className=" status">
-      <img src={imgProfil} className="img-rounded " />
+      <img src={currentUser.imgProfil} className="img-rounded " />
       <input
         onChange={() =>
           inputStatus.current.value != ""

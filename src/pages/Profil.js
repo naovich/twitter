@@ -4,10 +4,7 @@ import NavigateBack from "../components/NavigateBack";
 import Tweet, { Retweet } from "../components/Tweet";
 
 function Profil() {
-  const [
-    { tweets, nickname, imgProfil, login, subscription, subscriber, bio },
-    dispatch,
-  ] = useStateValue();
+  const [{ tweets, userProfil, currentUser }, dispatch] = useStateValue();
 
   const [activeClassTweet, setActiveClassTweet] = useState(
     "profil_tab_span_active"
@@ -36,7 +33,7 @@ function Profil() {
       .map(
         (x, index) =>
           x.type == 0 &&
-          x.login == login && (
+          x.login == userProfil.login && (
             <Tweet
               key={index}
               keyId={x.keyId}
@@ -90,7 +87,7 @@ function Profil() {
       .map(
         (x, index) =>
           x.type == 0 &&
-          x.login == login &&
+          x.login == userProfil.login &&
           x.image && (
             <Tweet
               key={index}
@@ -126,30 +123,35 @@ function Profil() {
   function showLi() {
     return <></>;
   }
-
+  window.scrollTo(0, 0);
   return (
     <div className="center-page">
       <header>
         <div className="back">
           <NavigateBack />
-          <h2>{nickname}</h2>
+          <h2>
+            {userProfil.nickname} {userProfil.userId}
+          </h2>
         </div>
       </header>
 
       <div className="cover"></div>
       <div className="cover_info">
-        <img src={imgProfil} />
-        <button>Éditer le profil</button>
+        <img src={userProfil.imgProfil} />
+        {currentUser.userId == userProfil.userId && (
+          <button>Éditer le profil</button>
+        )}
+
         <div>
-          <h3 className="bold">{nickname}</h3>
-          <span className="tweet_loginame">@{login}</span>
+          <h3 className="bold">{userProfil.nickname}</h3>
+          <span className="tweet_loginame">@{userProfil.login}</span>
         </div>
         <div className="bio">
-          <p>{bio}</p>
-          <span className="bold">{subscription} </span>
+          <p>{userProfil.bio}</p>
+          <span className="bold">{userProfil.subscription} </span>
           <span>abonnements</span>
 
-          <span className="bold margeLeft20"> {subscriber} </span>
+          <span className="bold margeLeft20"> {userProfil.subscriber} </span>
           <span>abonnés</span>
         </div>
         <div className="flex_h profil_tab">

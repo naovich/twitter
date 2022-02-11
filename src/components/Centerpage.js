@@ -4,24 +4,18 @@ import Tweet, { Retweet } from "./Tweet";
 //import reducer, { initialState } from "../data/reducer";
 import { useStateValue } from "../data/StateProvider";
 
-const msg =
-  "avec mon mari on était sur l’autoroute ma phobie est arrivé : le capot s’est ouvert je sais pas si vous vous rendez compte on est dans gta là ? الحمد لله j’ai épousé un pilote";
-const imgsrc =
-  "https://pbs.twimg.com/media/FKV64sKWUAIMslK?format=jpg&name=medium";
-
 function Centerpage() {
-  const [{ tweets, userId, init }, dispatch] = useStateValue();
+  const [{ tweets, currentUser, init }, dispatch] = useStateValue();
 
   function getTweet() {
     dispatch({
       type: "wall",
-      payload: userId,
+      payload: currentUser.userId,
     });
   }
 
   useEffect(() => {
     if (!init) getTweet();
-    console.log("init:" + init);
   }, []);
 
   return (
@@ -39,6 +33,7 @@ function Centerpage() {
           .map((x, index) => (
             <Tweet
               key={index}
+              userId={x.userId}
               keyId={x.keyId}
               message={x.message}
               nickname={x.nickname}

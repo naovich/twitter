@@ -6,24 +6,25 @@ export const userId = 0;
 export const initialState = {
   userId: userId,
   profilId: userId,
+  currentUser: {
+    userId: userId,
+    imgProfil: database.users[userId].imgProfil,
+    nickname: database.users[userId].nickname,
+    login: database.users[userId].login,
+  },
   userProfil: {
-    imgProfil: "",
-    nickname: "",
-    login: "",
-    bio: "",
-    subscription: 0,
-    subscriber: 0,
+    userId: database.users[userId].userId,
+    imgProfil: database.users[userId].imgProfil,
+    nickname: database.users[userId].nickname,
+    login: database.users[userId].login,
+    bio: database.users[userId].bio,
+    subscription: database.users[userId].subscription,
+    subscriber: database.users[userId].subscriber,
     tweets: [],
+    tweetsUser: [],
   },
   init: false,
-  imgProfil: database.users[userId].imgProfil,
-  nickname: database.users[userId].nickname,
-  login: database.users[userId].login,
-  bio: database.users[userId].bio,
-  subscription: database.users[userId].subscription,
-  subscriber: database.users[userId].subscriber,
   tweets: [],
-  tweetsUser: [],
   trends: database.trends,
   suggestions: database.suggestions,
 };
@@ -37,6 +38,7 @@ function getWallData(id) {
   for (let i = 0; i < wall.length; i++) {
     for (let j = 0; j < database.users[wall[i]].tweets.length; j++) {
       exp[wall[i]].tweets[j].nickname = exp[wall[i]].nickname;
+      exp[wall[i]].tweets[j].userId = exp[wall[i]].userId;
 
       //  database.users[wall[i]].tweets[j].date =
       //   database.users[wall[i]].tweets[j].date;
@@ -73,6 +75,7 @@ function getWallDataProfil(id) {
       user: id,
       id: exp.tweets[j].id,
     };
+    exp.tweets[j].userId = exp.userId;
     exp.tweets[j].nickname = exp.nickname;
     exp.tweets[j].login = exp.login;
     exp.tweets[j].imgProfil = exp.imgProfil;
@@ -101,13 +104,14 @@ const reducer = (state = initialState, action) => {
       return produce(state, (draft) => {
         // draft.tweets = getWallDataProfil(action.payload);
         draft.userProfil = {
+          userId: database.users[action.payload].userId,
           imgProfil: database.users[action.payload].imgProfil,
           nickname: database.users[action.payload].nickname,
           login: database.users[action.payload].login,
           bio: database.users[action.payload].bio,
           subscription: database.users[action.payload].subscription,
           subscriber: database.users[action.payload].subscriber,
-          tweets: getWallDataProfil(action.payload),
+          //tweets: getWallDataProfil(action.payload),
         };
       });
 

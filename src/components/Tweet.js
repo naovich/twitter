@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { k } from "../Tools/tools";
 import Overlay from "./Overlay";
 import { useStateValue } from "../data/StateProvider";
 
 function Tweet({
+  userId,
   nickname,
   login,
   message,
@@ -18,15 +20,22 @@ function Tweet({
   likeOn,
   rtOn,
 }) {
+  const [{ userProfil }, dispatch] = useStateValue();
+
+  function gotoProfil(userId) {
+    dispatch({ type: "profil", payload: userId });
+  }
   return (
     <div className="tweet pointer">
       <Overlay />
       <img src={imgProfil} className="img-rounded pointer " />
 
       <div className="flex">
-        <div className="tweet_nickLogin">
-          <span className="tweet_nickname pointer">{nickname}</span>
-          <span className="tweet_loginame pointer"> @{login}</span>
+        <div onClick={() => gotoProfil(userId)} className="tweet_nickLogin">
+          <Link to="/profil">
+            <span className="tweet_nickname pointer">{nickname}</span>
+            <span className="tweet_loginame pointer"> @{login}</span>
+          </Link>
         </div>
         <span className="tweet_message ">{message && message}</span>
         {image && <img className="tweet_img" src={image} />}

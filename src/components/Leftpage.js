@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useStateValue } from "../data/StateProvider";
 
 function Leftpage() {
+  const [{ currentUser }, dispatch] = useStateValue();
+  function gotoProfil() {
+    dispatch({ type: "profil", payload: currentUser.userId });
+  }
+
   return (
     <div className="left-page">
       <ul className="left-icon flex_v">
@@ -32,11 +38,13 @@ function Leftpage() {
             <i className="fas fa-envelope"></i>
           </li>
         </Link>
-        <Link to="/profil">
-          <li>
-            <i className="fas fa-user"></i>
-          </li>
-        </Link>
+        <div onClick={gotoProfil}>
+          <Link to="/profil">
+            <li>
+              <i className="fas fa-user"></i>
+            </li>
+          </Link>
+        </div>
       </ul>
     </div>
   );
