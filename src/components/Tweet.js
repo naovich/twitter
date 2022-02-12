@@ -24,6 +24,7 @@ function Tweet({
 
   function gotoProfil(userId) {
     dispatch({ type: "profil", payload: userId });
+    window.scrollTo(0, 0);
   }
   return (
     <div className="tweet pointer">

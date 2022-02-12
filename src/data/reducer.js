@@ -15,6 +15,7 @@ export const initialState = {
   userProfil: {
     userId: database.users[userId].userId,
     imgProfil: database.users[userId].imgProfil,
+    imgBanner: database.users[userId].imgBanner,
     nickname: database.users[userId].nickname,
     login: database.users[userId].login,
     bio: database.users[userId].bio,
@@ -103,9 +104,12 @@ const reducer = (state = initialState, action) => {
     case "profil":
       return produce(state, (draft) => {
         // draft.tweets = getWallDataProfil(action.payload);
+        console.log(action.payload);
+        // action.payload = state.userProfil.userId;
         draft.userProfil = {
           userId: database.users[action.payload].userId,
           imgProfil: database.users[action.payload].imgProfil,
+          imgBanner: database.users[action.payload].imgBanner,
           nickname: database.users[action.payload].nickname,
           login: database.users[action.payload].login,
           bio: database.users[action.payload].bio,

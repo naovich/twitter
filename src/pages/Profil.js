@@ -15,13 +15,9 @@ function Profil() {
   const [activeClassReponse, setActiveClassReponse] = useState("");
   const [activeClassMedia, setActiveClassMedia] = useState("");
   const [activeClassLike, setActiveClassLike] = useState("");
+  // const [activeClass, setActiveClass] = useState("tweets");
+  //const [activeRender, setActiveRender] = useState(showTw);
 
-  const [activeRender, setActiveRender] = useState(showTw);
-
-  /*useEffect(() => {
-    fetch(`http://localhost:3000/${profil}`).then(setUser);
-  }, profil);
-*/
   // ------------- SHOW TWEET -----------------
 
   function showTweets() {
@@ -30,7 +26,8 @@ function Profil() {
     setActiveClassMedia("");
     setActiveClassLike("");
 
-    setActiveRender(showTw);
+    //setActiveRender(showTw);
+    // setActiveClass("tweets");
   }
 
   function showTw() {
@@ -43,6 +40,7 @@ function Profil() {
           x.login == userProfil.login && (
             <Tweet
               key={index}
+              userId={x.userId}
               keyId={x.keyId}
               message={x.message}
               nickname={x.nickname}
@@ -68,8 +66,8 @@ function Profil() {
     setActiveClassReponse("profil_tab_span_active");
     setActiveClassMedia("");
     setActiveClassLike("");
-
-    setActiveRender(showRe);
+    //setActiveClass("reponse");
+    // setActiveRender(showRe);
   }
 
   function showRe() {
@@ -83,8 +81,8 @@ function Profil() {
     setActiveClassReponse("");
     setActiveClassMedia("profil_tab_span_active");
     setActiveClassLike("");
-
-    setActiveRender(showMe);
+    // setActiveRender(showMe);
+    // setActiveClass("media");
   }
 
   function showMe() {
@@ -98,6 +96,7 @@ function Profil() {
           x.image && (
             <Tweet
               key={index}
+              userId={x.userId}
               keyId={x.keyId}
               message={x.message}
               nickname={x.nickname}
@@ -123,13 +122,17 @@ function Profil() {
     setActiveClassReponse("");
     setActiveClassMedia("");
     setActiveClassLike("profil_tab_span_active");
-
-    setActiveRender(showLi);
+    // setActiveClass("like");
+    // setActiveRender(showLi);
   }
 
   function showLi() {
     return <></>;
   }
+
+  //useEffect(() => {
+  //   window.scrollTo(0, 0);
+  //}, []);
   //window.scrollTo(0, 0);
   return (
     <div className="center-page">
@@ -140,7 +143,9 @@ function Profil() {
         </div>
       </header>
 
-      <div className="cover"></div>
+      <div className="cover">
+        <img src={userProfil.imgBanner} />
+      </div>
       <div className="cover_info">
         <img src={userProfil.imgProfil} />
         {currentUser.userId == userProfil.userId && (
@@ -176,31 +181,10 @@ function Profil() {
       </div>
 
       <div className="main ">
-        {tweets
-          .slice(0)
-          .reverse()
-          .map(
-            (x, index) =>
-              x.type == 0 &&
-              x.login == userProfil.login && (
-                <Tweet
-                  key={index}
-                  keyId={x.keyId}
-                  message={x.message}
-                  nickname={x.nickname}
-                  login={x.login}
-                  date={x.date}
-                  imgProfil={x.imgProfil}
-                  image={x.image}
-                  comment={x.comment}
-                  retweet={x.rt}
-                  like={x.like}
-                  likeOn={x.likeOn}
-                  rtOn={x.rtOn}
-                  id={x.id}
-                />
-              )
-          )}
+        {
+          //activeRender
+          activeClassMedia == "profil_tab_span_active" ? showMe() : showTw()
+        }
       </div>
     </div>
   );

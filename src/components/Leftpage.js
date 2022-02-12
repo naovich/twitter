@@ -6,6 +6,7 @@ function Leftpage() {
   const [{ currentUser }, dispatch] = useStateValue();
   function gotoProfil() {
     dispatch({ type: "profil", payload: currentUser.userId });
+    window.scrollTo(0, 0);
   }
 
   return (
