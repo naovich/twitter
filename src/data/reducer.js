@@ -113,11 +113,6 @@ function getAnswers(userId, tweetId) {
   ans.forEach((element) => {
     const answer = {
       keyId: -1,
-      /*id:id = {
-          user: id,
-          id: ans[j].id,
-        };*/
-
       type: element.type,
       userId: element.userId,
       nickname: exp[element.userId].nickname,
@@ -156,6 +151,12 @@ function getAnswers(userId, tweetId) {
   return wall;
 }
 
+function getAnswers2(keyId) {
+  //  tweets.filter((x) => {
+  //    return x.question && x.question.keyId == keyId;
+  // });
+}
+
 //--------------------- REDUCER -------------------------
 
 const reducer = (state = initialState, action) => {
@@ -173,6 +174,12 @@ const reducer = (state = initialState, action) => {
           action.payload.userId,
           action.payload.tweetId
         );
+        // draft.tweet =
+      });
+
+    case "answers2":
+      return produce(state, (draft) => {
+        //  draft.answers = getAnswers2(keyId);
         // draft.tweet =
       });
 
@@ -199,6 +206,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         tweets: [...state.tweets, action.payload],
       };
+    case "response":
+      return produce(state, (draft) => {
+        draft.tweets = [...draft.tweets, action.payload];
+        draft.tweets[action.payload.question.tweetId].answers = [
+          ...draft.tweets[action.payload.question.tweetId].answers,
+          action.payload.question,
+        ];
+      });
     case "search":
       return {
         ...state,

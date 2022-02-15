@@ -30,26 +30,32 @@ function Centerpage() {
         {tweets
           .slice(0)
           .reverse()
-          .map((x, index) => (
-            <Tweet
-              key={index}
-              keyTab={index}
-              userId={x.userId}
-              keyId={x.keyId}
-              message={x.message}
-              nickname={x.nickname}
-              login={x.login}
-              date={x.date}
-              imgProfil={x.imgProfil}
-              image={x.image}
-              comment={x.comment}
-              retweet={x.rt}
-              like={x.like}
-              likeOn={x.likeOn}
-              rtOn={x.rtOn}
-              id={x.id}
-            />
-          ))}
+          .map(
+            (x, index) =>
+              x.type == 0 && (
+                <Tweet
+                  key={index}
+                  type={x.type}
+                  keyTab={index}
+                  userId={x.userId}
+                  keyId={x.keyId}
+                  message={x.message}
+                  nickname={x.nickname}
+                  login={x.login}
+                  date={x.date}
+                  imgProfil={x.imgProfil}
+                  image={x.image}
+                  comment={x.comment}
+                  retweet={x.rt}
+                  like={x.like}
+                  likeOn={x.likeOn}
+                  rtOn={x.rtOn}
+                  id={x.id}
+                  answers={x.answers}
+                  question={x.question}
+                />
+              )
+          )}
       </div>
     </div>
   );

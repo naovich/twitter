@@ -6,6 +6,8 @@ import { useStateValue } from "../data/StateProvider";
 
 function Tweet({
   userId,
+  question,
+  type,
   nickname,
   login,
   message,
@@ -20,6 +22,7 @@ function Tweet({
   likeOn,
   rtOn,
   keyTab,
+  answers,
 }) {
   const [{ userProfil }, dispatch] = useStateValue();
 
@@ -41,13 +44,20 @@ function Tweet({
               <span className="tweet_loginame pointer"> @{login}</span>
             </Link>
           </div>
-          <Link to={`/${login}/status/${id.id}/${keyId}`}>
+          {type == 0 ? (
+            <Link to={`/${login}/status/${id.id}/${keyId}`}>
+              <div className="message">
+                <span className="tweet_message pointer ">
+                  {message && message}
+                </span>
+              </div>
+            </Link>
+          ) : (
             <div className="message">
-              <span className="tweet_message pointer ">
-                {message && message}
-              </span>
+              <span className="tweet_message">{message && message}</span>
             </div>
-          </Link>
+          )}
+
           {image && <img className="tweet_img pointer" src={image} />}
         </div>
       </div>

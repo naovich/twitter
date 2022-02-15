@@ -47,6 +47,7 @@ function Profil() {
           x.login == userProfil.login && (
             <Tweet
               key={index}
+              type={x.type}
               userId={x.userId}
               keyId={x.keyId}
               message={x.message}

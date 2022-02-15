@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import Overlay from "../components/Overlay";
@@ -11,7 +11,8 @@ import Status from "../components/Status";
 function TweetOpen() {
   const [{ tweets, answers }, dispatch] = useStateValue();
   const { profil, tweetId, keyId, keyTab } = useParams();
-  window.scrollTo(0, 0);
+  const [answers2, setAnswers2] = useState([]);
+  // window.scrollTo(0, 0);
 
   function getAnswers() {
     dispatch({
@@ -23,9 +24,34 @@ function TweetOpen() {
     });
   }
 
+  /* function getAnswers2() {
+    dispatch({
+      type: "answers2",
+      payload: keyId,
+    });
+  }*/
+
+  /*function getAnswers2(keyId) {
+    tweets.filter((x) => {
+      return x.question && x.question.keyId == keyId;
+    });
+  }*/
+
   useEffect(() => {
-    getAnswers();
+    window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    setAnswers2(
+      tweets.filter((x) => {
+        return (
+          x.question &&
+          x.question.userId == tweets[keyId].id.user &&
+          x.question.tweetId == tweets[keyId].id.id
+        );
+      })
+    );
+  }, [tweets, answers]);
 
   return (
     <div className="center-page">
@@ -53,10 +79,10 @@ function TweetOpen() {
         rtOn={tweets[keyId].rtOn}
         id={tweets[keyId].id.id}
       />
-      <Status placeholder="Tweeter votre réponse" />
+      <Status placeholder="Tweeter votre réponse" keyId={keyId} />
       <div className="main ">
-        {answers.length != 0 &&
-          answers
+        {answers2.length != 0 &&
+          answers2
             .slice(0)
             .reverse()
             .map((x, index) => (

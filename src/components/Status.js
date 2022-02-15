@@ -3,28 +3,58 @@ import { useReducer, useRef } from "react";
 import { produce } from "immer";
 import { useStateValue } from "../data/StateProvider";
 
-function Status({ placeholder }) {
+function Status({ placeholder, keyId }) {
   const inputStatus = useRef();
   const [buttonEnabled, setButtonEnabled] = useState(true);
   const [{ currentUser, tweets }, dispatch] = useStateValue();
-
+  console.log(keyId);
   function postTweet() {
-    dispatch({
-      type: "post",
-      payload: {
-        type: 0,
-        id: currentUser.userId + "-" + tweets.length,
-        keyId: tweets.length,
-        nickname: currentUser.nickname,
-        login: currentUser.login,
-        imgProfil: currentUser.imgProfil,
-        date: Date.now(),
-        message: inputStatus.current.value,
-        comment: 0,
-        rt: 0,
-        like: 0,
-      },
-    });
+    keyId
+      ? dispatch({
+          type: "response",
+          payload: {
+            type: 1,
+            question: {
+              userId: tweets[keyId].id.user,
+              tweetId: tweets[keyId].id.id, //parseInt(keyId), //tweets[keyId].id.id,
+            },
+            id: {
+              user: currentUser.userId,
+              id: tweets.length,
+            },
+            // id: currentUser.userId + "-" + tweets.length,
+            keyId: tweets.length,
+            nickname: currentUser.nickname,
+            login: currentUser.login,
+            imgProfil: currentUser.imgProfil,
+            date: Date.now(),
+            message: inputStatus.current.value,
+            comment: 0,
+            rt: 0,
+            like: 0,
+          },
+        })
+      : dispatch({
+          type: "post",
+          payload: {
+            type: 0,
+            id: {
+              user: currentUser.userId,
+              id: tweets.length,
+            },
+            // id: currentUser.userId + "-" + tweets.length,
+            keyId: tweets.length,
+            nickname: currentUser.nickname,
+            login: currentUser.login,
+            imgProfil: currentUser.imgProfil,
+            date: Date.now(),
+            message: inputStatus.current.value,
+            comment: 0,
+            rt: 0,
+            like: 0,
+          },
+        });
+
     inputStatus.current.value = "";
     setButtonEnabled(true);
   }
