@@ -24,7 +24,7 @@ function Centerpage() {
         <h1>ACCUEIL</h1>
       </header>
 
-      <Status />
+      <Status placeholder="Quoi de neuf ?" />
 
       <div className="main ">
         {tweets
@@ -33,6 +33,7 @@ function Centerpage() {
           .map((x, index) => (
             <Tweet
               key={index}
+              keyTab={index}
               userId={x.userId}
               keyId={x.keyId}
               message={x.message}

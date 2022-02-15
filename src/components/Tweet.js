@@ -19,6 +19,7 @@ function Tweet({
   keyId,
   likeOn,
   rtOn,
+  keyTab,
 }) {
   const [{ userProfil }, dispatch] = useStateValue();
 
@@ -27,20 +28,31 @@ function Tweet({
     window.scrollTo(0, 0);
   }
   return (
-    <div className="tweet pointer">
-      <Overlay />
-      <img src={imgProfil} className="img-rounded pointer " />
+    <div className="tweetGlobal">
+      <div className="tweet ">
+        <Overlay />
 
-      <div className="flex">
-        <div onClick={() => gotoProfil(userId)} className="tweet_nickLogin">
-          <Link to="/profil">
-            <span className="tweet_nickname pointer">{nickname}</span>
-            <span className="tweet_loginame pointer"> @{login}</span>
+        <img src={imgProfil} className="img-rounded pointer " />
+
+        <div className="flex">
+          <div onClick={() => gotoProfil(userId)} className="tweet_nickLogin">
+            <Link to={`/${login}`}>
+              <span className="tweet_nickname pointer">{nickname}</span>
+              <span className="tweet_loginame pointer"> @{login}</span>
+            </Link>
+          </div>
+          <Link to={`/${login}/status/${id.id}/${keyId}`}>
+            <div className="message">
+              <span className="tweet_message pointer ">
+                {message && message}
+              </span>
+            </div>
           </Link>
+          {image && <img className="tweet_img pointer" src={image} />}
         </div>
-        <span className="tweet_message ">{message && message}</span>
-        {image && <img className="tweet_img" src={image} />}
+      </div>
 
+      <div className="tweetInfo">
         <TweetInfo
           comment={comment}
           retweet={retweet}
@@ -57,7 +69,7 @@ function Tweet({
 
 export default Tweet;
 
-function TweetInfo({ comment, retweet, like, id, keyId, likeOn, rtOn }) {
+export function TweetInfo({ comment, retweet, like, id, keyId, likeOn, rtOn }) {
   const [{ tweets }, dispatch] = useStateValue();
 
   function onLike() {
@@ -84,19 +96,19 @@ function TweetInfo({ comment, retweet, like, id, keyId, likeOn, rtOn }) {
     <div className="flex_h tweet_iconInfo">
       <span className="twitter_comment">
         <i className="far fa-comment"></i>
-        <span>{k(comment)}</span>
+        <span className="pointer">{k(comment)}</span>
       </span>
 
       <span onClick={onRT} className="twitter_retweet">
         {rtOn ? (
           <>
-            <i className="fas fa-retweet twitter_rted "></i>{" "}
-            <span className="twitter_rted">{k(retweet)}</span>
+            <i className="fas fa-retweet twitter_rted pointer"></i>{" "}
+            <span className="twitter_rted pointer">{k(retweet)}</span>
           </>
         ) : (
           <>
-            <i className="fas fa-retweet "></i>
-            <span>{k(retweet)}</span>
+            <i className="fas fa-retweet pointer "></i>
+            <span className="pointer">{k(retweet)}</span>
           </>
         )}
       </span>
@@ -104,18 +116,18 @@ function TweetInfo({ comment, retweet, like, id, keyId, likeOn, rtOn }) {
       <span onClick={onLike} className="twitter_like">
         {likeOn ? (
           <>
-            <i className="fas fa-heart twitter_liked "></i>
-            <span className="twitter_liked"> {k(like)}</span>
+            <i className="fas fa-heart twitter_liked pointer "></i>
+            <span className="twitter_liked pointer"> {k(like)}</span>
           </>
         ) : (
           <>
-            <i className="far fa-heart "></i>
-            <span> {k(like)}</span>
+            <i className="far fa-heart pointer"></i>
+            <span className="pointer"> {k(like)}</span>
           </>
         )}
       </span>
-      <span className="twitter_comment">
-        <i className="far fa-share-square "></i>
+      <span className="twitter_comment pointer">
+        <i className="far fa-share-square pointer"></i>
       </span>
     </div>
   );

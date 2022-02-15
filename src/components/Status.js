@@ -3,7 +3,7 @@ import { useReducer, useRef } from "react";
 import { produce } from "immer";
 import { useStateValue } from "../data/StateProvider";
 
-function Status() {
+function Status({ placeholder }) {
   const inputStatus = useRef();
   const [buttonEnabled, setButtonEnabled] = useState(true);
   const [{ currentUser, tweets }, dispatch] = useStateValue();
@@ -38,7 +38,7 @@ function Status() {
             ? setButtonEnabled(false)
             : setButtonEnabled(true)
         }
-        placeholder="Quoi de neuf ?"
+        placeholder={placeholder}
         className="status_input"
         ref={inputStatus}
       />

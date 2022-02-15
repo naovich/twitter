@@ -40,7 +40,7 @@ function Leftpage() {
           </li>
         </Link>
         <div onClick={gotoProfil}>
-          <Link to="/profil">
+          <Link to={`/${currentUser.login}`}>
             <li>
               <i className="fas fa-user"></i>
             </li>

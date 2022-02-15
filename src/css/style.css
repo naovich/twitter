@@ -219,12 +219,20 @@ header h2 {
 
 .tweet {
   display: flex;
-  border-bottom: solid 1px var(--borderColor);
-  padding: 10px;
+
+  padding: 10px 10px 0px 10px;
   transition: 1s;
 }
 
-.tweet:hover {
+.tweetInfo {
+  display: flex;
+  border-bottom: solid 1px var(--borderColor);
+  padding: 0px 0px 5px 70px;
+}
+.tweetGlobal {
+  transition: 1s;
+}
+.tweetGlobal:hover {
   background-color: var(--trend_item_hover);
 }
 
@@ -256,6 +264,10 @@ header h2 {
   max-height: 400px;
   object-fit: cover;
   border-radius: 20px;
+}
+
+.message {
+  width: 100%;
 }
 
 /* --------  PROFIL ---------*/

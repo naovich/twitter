@@ -10,6 +10,7 @@ import Error404 from "./pages/Error404";
 import Message from "./pages/Message";
 import Notifications from "./pages/Notifications";
 import Search from "./pages/Search";
+import TweetOpen from "./pages/TweetOpen";
 
 function App() {
   return (
@@ -20,6 +21,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/home" element={<Home />} />
           <Route path="/:profil" element={<Profil />} />
+          <Route
+            path="/:profil/status/:tweetId/:keyId"
+            element={<TweetOpen />}
+          />
           <Route path="/message" element={<Message />} />
           <Route path="/notification" element={<Notifications />} />
           <Route path="/trends" element={<Trends />} />

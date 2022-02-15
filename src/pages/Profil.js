@@ -9,6 +9,13 @@ function Profil() {
   const [user, setUser] = useState();
   const [{ tweets, userProfil, currentUser }, dispatch] = useStateValue();
 
+  //gotoProfil(1);
+
+  function gotoProfil(userId) {
+    dispatch({ type: "profil", payload: userId });
+    window.scrollTo(0, 0);
+  }
+
   const [activeClassTweet, setActiveClassTweet] = useState(
     "profil_tab_span_active"
   );
