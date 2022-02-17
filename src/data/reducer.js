@@ -30,6 +30,8 @@ export const initialState = {
   tweet: {},
   trends: database.trends,
   suggestions: database.suggestions,
+  overlay: "",
+  isOverlayOpened: false,
 };
 
 //--------------------- WALL -------------------------
@@ -54,7 +56,7 @@ function getWallData(id) {
         user: exp[wall[i]].userId,
         id: exp[wall[i]].tweets[j].id,
       };
-
+      exp[wall[i]].tweets[j].comment = exp[wall[i]].tweets[j].answers.length;
       exp[wall[i]].tweets[j].login = exp[wall[i]].login;
       exp[wall[i]].tweets[j].imgProfil = exp[wall[i]].imgProfil;
 
@@ -177,9 +179,16 @@ const reducer = (state = initialState, action) => {
         // draft.tweet =
       });
 
-    case "answers2":
+    case "overlay":
       return produce(state, (draft) => {
-        //  draft.answers = getAnswers2(keyId);
+        draft.overlay = action.payload;
+        draft.isOverlayOpened = true;
+        // draft.tweet =
+      });
+
+    case "closeOverlay":
+      return produce(state, (draft) => {
+        draft.isOverlayOpened = false;
         // draft.tweet =
       });
 
@@ -213,6 +222,19 @@ const reducer = (state = initialState, action) => {
           ...draft.tweets[action.payload.question.tweetId].answers,
           action.payload.question,
         ];
+
+        const answ = {
+          userId: action.payload.userId,
+          tweetId: 0, //action.payload.id.id,
+        };
+        // console.log(answ);
+
+        draft.tweets[action.payload.question.tweetId].answers = [
+          ...draft.tweets[action.payload.question.tweetId].answers,
+          answ,
+        ];
+        draft.tweets[action.payload.parentKeyId].comment++;
+        //console.log(draft.tweets[action.payload.question.tweetId].answers);
       });
     case "search":
       return {

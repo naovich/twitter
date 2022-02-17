@@ -11,11 +11,15 @@ import Message from "./pages/Message";
 import Notifications from "./pages/Notifications";
 import Search from "./pages/Search";
 import TweetOpen from "./pages/TweetOpen";
+import { useStateValue } from "./data/StateProvider";
 
 function App() {
+  const [{ overlay }, dispatch] = useStateValue();
+
   return (
     <BrowserRouter>
       <div className="flex_h master">
+        <Overlay>{overlay}</Overlay>
         <Leftpage />
         <Routes>
           <Route path="/" element={<Home />} />

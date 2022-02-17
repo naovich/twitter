@@ -3,6 +3,7 @@ import Status from "./Status";
 import Tweet, { Retweet } from "./Tweet";
 //import reducer, { initialState } from "../data/reducer";
 import { useStateValue } from "../data/StateProvider";
+import Overlay from "./Overlay";
 
 function Centerpage() {
   const [{ tweets, currentUser, init }, dispatch] = useStateValue();

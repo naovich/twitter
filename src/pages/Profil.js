@@ -16,6 +16,13 @@ function Profil() {
     window.scrollTo(0, 0);
   }
 
+  function openImage(image) {
+    dispatch({
+      type: "overlay",
+      payload: <img className="tweet_img pointer" src={image} />,
+    });
+  }
+
   const [activeClassTweet, setActiveClassTweet] = useState(
     "profil_tab_span_active"
   );
@@ -123,6 +130,62 @@ function Profil() {
       );
   }
 
+  function showRe() {
+    return tweets
+      .slice(0)
+      .reverse()
+      .map(
+        (x, index) =>
+          x.login == userProfil.login && (
+            <Tweet
+              key={index}
+              userId={x.userId}
+              keyId={x.keyId}
+              message={x.message}
+              nickname={x.nickname}
+              login={x.login}
+              date={x.date}
+              imgProfil={x.imgProfil}
+              image={x.image}
+              comment={x.comment}
+              retweet={x.rt}
+              like={x.like}
+              likeOn={x.likeOn}
+              rtOn={x.rtOn}
+              id={x.id}
+            />
+          )
+      );
+  }
+
+  function showLike() {
+    return tweets
+      .slice(0)
+      .reverse()
+      .map(
+        (x, index) =>
+          userProfil.userId == 0 &&
+          x.likeOn && (
+            <Tweet
+              key={index}
+              userId={x.userId}
+              keyId={x.keyId}
+              message={x.message}
+              nickname={x.nickname}
+              login={x.login}
+              date={x.date}
+              imgProfil={x.imgProfil}
+              image={x.image}
+              comment={x.comment}
+              retweet={x.rt}
+              like={x.like}
+              likeOn={x.likeOn}
+              rtOn={x.rtOn}
+              id={x.id}
+            />
+          )
+      );
+  }
   // ------------- SHOW LIKE -----------------
 
   function showLikes() {
@@ -152,10 +215,18 @@ function Profil() {
       </header>
 
       <div className="cover">
-        <img src={userProfil.imgBanner} />
+        <img
+          className="pointer"
+          onClick={() => openImage(userProfil.imgBanner)}
+          src={userProfil.imgBanner}
+        />
       </div>
       <div className="cover_info">
-        <img src={userProfil.imgProfil} />
+        <img
+          className="pointer"
+          onClick={() => openImage(userProfil.imgProfil)}
+          src={userProfil.imgProfil}
+        />
         {currentUser.userId == userProfil.userId && (
           <button>Éditer le profil</button>
         )}
@@ -177,7 +248,7 @@ function Profil() {
             Tweets
           </span>
           <span onClick={showReponses} className={activeClassReponse}>
-            Réponses
+            Tweets et réponses
           </span>
           <span onClick={showMedias} className={activeClassMedia}>
             Médias
@@ -189,10 +260,10 @@ function Profil() {
       </div>
 
       <div className="main ">
-        {
-          //activeRender
-          activeClassMedia == "profil_tab_span_active" ? showMe() : showTw()
-        }
+        {activeClassMedia == "profil_tab_span_active" && showMe()}
+        {activeClassTweet == "profil_tab_span_active" && showTw()}
+        {activeClassReponse == "profil_tab_span_active" && showRe()}
+        {activeClassLike == "profil_tab_span_active" && showLike()}
       </div>
     </div>
   );

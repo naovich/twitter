@@ -7,7 +7,7 @@ function Status({ placeholder, keyId }) {
   const inputStatus = useRef();
   const [buttonEnabled, setButtonEnabled] = useState(true);
   const [{ currentUser, tweets }, dispatch] = useStateValue();
-  console.log(keyId);
+  //console.log(keyId);
   function postTweet() {
     keyId
       ? dispatch({
@@ -23,6 +23,7 @@ function Status({ placeholder, keyId }) {
               id: tweets.length,
             },
             // id: currentUser.userId + "-" + tweets.length,
+            userId: currentUser.userId,
             keyId: tweets.length,
             nickname: currentUser.nickname,
             login: currentUser.login,
@@ -32,6 +33,13 @@ function Status({ placeholder, keyId }) {
             comment: 0,
             rt: 0,
             like: 0,
+            likeOn: false,
+            rtOn: false,
+            likes: [],
+            rts: [],
+            comments: [],
+            answers: [],
+            parentKeyId: keyId,
           },
         })
       : dispatch({
@@ -43,6 +51,7 @@ function Status({ placeholder, keyId }) {
               id: tweets.length,
             },
             // id: currentUser.userId + "-" + tweets.length,
+            userId: currentUser.userId,
             keyId: tweets.length,
             nickname: currentUser.nickname,
             login: currentUser.login,
@@ -52,6 +61,12 @@ function Status({ placeholder, keyId }) {
             comment: 0,
             rt: 0,
             like: 0,
+            likeOn: false,
+            rtOn: false,
+            likes: [],
+            rts: [],
+            comments: [],
+            answers: [],
           },
         });
 

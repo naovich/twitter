@@ -575,6 +575,8 @@ header h2 {
 .overlay {
   width: 100vw;
   height: 100vh;
+  top: 0px;
+  left: 0px;
   background-color: rgba(0, 5, 0, 0.9);
   position: fixed;
   z-index: 100;
@@ -585,12 +587,11 @@ header h2 {
 }
 
 .overlay img {
-  position: relative;
   margin: auto;
-  display: block;
-  top: 30px;
-  width: 80%;
-  max-width: 800px;
+  height: 100%;
+  max-height: 100vh;
+  padding: 20px;
+  object-fit: contain;
 }
 
 .overlay i {
@@ -639,5 +640,9 @@ header h2 {
     border-radius: 100px;
     margin: -50px 20px 20px 20px;
     border: solid 3px white;
+  }
+
+  .profil_tab span {
+    padding: 10px 5px 30px 5px;
   }
 }
