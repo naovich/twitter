@@ -69,6 +69,7 @@ function Profil() {
               likeOn={x.likeOn}
               rtOn={x.rtOn}
               id={x.id}
+              response={x.response}
             />
           )
       );
@@ -125,6 +126,7 @@ function Profil() {
               likeOn={x.likeOn}
               rtOn={x.rtOn}
               id={x.id}
+              response={x.response}
             />
           )
       );
@@ -153,6 +155,7 @@ function Profil() {
               likeOn={x.likeOn}
               rtOn={x.rtOn}
               id={x.id}
+              response={x.response}
             />
           )
       );
@@ -182,6 +185,7 @@ function Profil() {
               likeOn={x.likeOn}
               rtOn={x.rtOn}
               id={x.id}
+              response={x.response}
             />
           )
       );
@@ -204,7 +208,7 @@ function Profil() {
   //useEffect(() => {
   //   window.scrollTo(0, 0);
   //}, []);
-  //window.scrollTo(0, 0);
+  //window.scrollTo(0,é
   return (
     <div className="center-page">
       <header>

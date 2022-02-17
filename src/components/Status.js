@@ -40,6 +40,10 @@ function Status({ placeholder, keyId }) {
             comments: [],
             answers: [],
             parentKeyId: keyId,
+            response: {
+              userId: tweets[keyId].id.user,
+              login: tweets[keyId].login,
+            },
           },
         })
       : dispatch({

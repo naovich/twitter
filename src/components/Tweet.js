@@ -23,6 +23,7 @@ function Tweet({
   rtOn,
   keyTab,
   answers,
+  response,
 }) {
   const [{ userProfil }, dispatch] = useStateValue();
 
@@ -52,6 +53,18 @@ function Tweet({
               <span className="tweet_nickname pointer">{nickname}</span>
               <span className="tweet_loginame pointer"> @{login}</span>
             </Link>
+          </div>
+          <div className="">
+            {response && (
+              <>
+                <span className="response">En réponse à : </span>
+                <span onClick={() => gotoProfil(response.userId)}>
+                  <Link to={`/${response}`}>
+                    <span className="arobase">@{response.login}</span>
+                  </Link>
+                </span>
+              </>
+            )}
           </div>
           {type == 0 ? (
             <Link to={`/${login}/status/${id.id}/${keyId}`}>

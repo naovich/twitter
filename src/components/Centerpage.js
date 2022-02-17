@@ -54,6 +54,7 @@ function Centerpage() {
                   id={x.id}
                   answers={x.answers}
                   question={x.question}
+                  response={x.response}
                 />
               )
           )}

@@ -59,6 +59,12 @@ function getWallData(id) {
       exp[wall[i]].tweets[j].comment = exp[wall[i]].tweets[j].answers.length;
       exp[wall[i]].tweets[j].login = exp[wall[i]].login;
       exp[wall[i]].tweets[j].imgProfil = exp[wall[i]].imgProfil;
+      if (exp[wall[i]].tweets[j].type == 1) {
+        exp[wall[i]].tweets[j].response = {
+          userId: database.users[exp[wall[i]].tweets[j].question.userId].userId,
+          login: database.users[exp[wall[i]].tweets[j].question.userId].login,
+        };
+      }
 
       wall2.push(exp[wall[i]].tweets[j]);
     }

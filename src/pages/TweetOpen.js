@@ -102,6 +102,7 @@ function TweetOpen() {
                 likeOn={x.likeOn}
                 rtOn={x.rtOn}
                 id={x.id}
+                response={x.response}
               />
             ))}
       </div>

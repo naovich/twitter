@@ -79,6 +79,7 @@ body {
   margin-left: auto;
   margin-right: auto;
   align-items: flex-start;
+  min-height: 5000px;
 }
 
 .flex_v {
@@ -268,6 +269,16 @@ header h2 {
 
 .message {
   width: 100%;
+}
+
+.response {
+  display: inline-block;
+  color: var(--leftIconColor);
+  margin: 5px 2px 10px 0px;
+}
+
+.arobase {
+  color: var(--logoColor);
 }
 
 /* --------  PROFIL ---------*/
