@@ -32,7 +32,7 @@ function App() {
           <Route path="/message" element={<Message />} />
           <Route path="/notification" element={<Notifications />} />
           <Route path="/trends" element={<Trends />} />
-          <Route path="/search" element={<Search />} />
+          <Route path="/search/:search" element={<Search />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
         <Rightpage />

@@ -15,7 +15,7 @@ function Trend({ id, categorie, hashtag, rt }) {
 
   return (
     <div onClick={onSerach} className=" trends_bloc">
-      <Link to="/search">
+      <Link to={`/search/${hashtag}`}>
         <ul className="trend_item">
           <li className="categorie">{cat}</li>
           <li className="hashtag">{hashtag}</li>

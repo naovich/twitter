@@ -20,11 +20,6 @@ function Overlay({ children, isOpen = false }) {
         <i
           className="fas fa-close pointer"
           onClick={() => {
-            console.log(show4);
-            setShow(false);
-            setShow4("à l'huile");
-            console.log(show4);
-
             dispatch({
               type: "closeOverlay",
             });
