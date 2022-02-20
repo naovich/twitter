@@ -59,7 +59,7 @@ function Tweet({
               <>
                 <span className="response">En réponse à : </span>
                 <span onClick={() => gotoProfil(response.userId)}>
-                  <Link to={`/${response.login}`}>
+                  <Link to={`/${response}`}>
                     <span className="arobase">@{response.login}</span>
                   </Link>
                 </span>
